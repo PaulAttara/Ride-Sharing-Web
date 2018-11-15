@@ -5,15 +5,17 @@
       <tr v-for="participant in participants" >
         <td>{{ participant.name }}</td>
         <td>
-          <ul>
-            <li v-for="event in participant.events">
-              {{event.name}}<br/>{{event.eventDate}}
-            </li>
+          <ul v-for="event in participant.events">
+            <ul>
+              <li v-for="(value, property) in event">
+                {{property}}: {{value}}
+              </li>
+            </ul>
           </ul>
         </td>
       </tr>
       <tr>
-        <td>
+        <td id="txt">
           <input type="text" v-model="newParticipant" placeholder="Participant Name">
         </td>
         <td>
@@ -21,6 +23,7 @@
         </td>
       </tr>
     </table>
+    <router-link to="/app/login">Navigate to login</router-link>
     <p>
       <span v-if="errorParticipant" style="color:red">Error: {{errorParticipant}} </span>
     </p>
@@ -34,6 +37,9 @@
   #eventregistration {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background: #f2ece8;
+    background-color: rgba(96, 27, 224, 0.72)
+  }
+  #txt{
+    padding-left: 10px;
   }
 </style>

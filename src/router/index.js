@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import RideSharing from '@/components/RideSharing'
 import Login from '@/components/Login'
+import About from '@/components/About'
 
 Vue.use(Router)
 
@@ -20,18 +21,13 @@ export default new Router({
     },
     {
       path: '/app/login',
-      name: 'RideSharing',
-      component: RideSharing
+      name: 'Login',
+      component: Login
     },
     {
-      path: '/app/passenger',
-      name: 'RideSharing',
-      component: RideSharing
-    },
-    {
-      path: '/app/driver',
-      name: 'RideSharing',
-      component: RideSharing
+      path: '/app/about',
+      name: 'About',
+      component: About
     }
   ]
 })
