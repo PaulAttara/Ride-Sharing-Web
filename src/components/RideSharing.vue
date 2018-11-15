@@ -37,7 +37,7 @@
   #eventregistration {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background-color: rgba(96, 27, 224, 0.72)
+    background-color: rgba(224, 199, 27, 0.72)
   }
   #txt{
     padding-left: 10px;

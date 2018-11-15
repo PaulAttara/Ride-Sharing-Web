@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 id="msg">{{ msg }}</h1>
     <ul>
       <li><h2><router-link to="/app/login">Login</router-link></h2></li>
       <li><h2><router-link to="/app/about">About Us</router-link></h2></li>
@@ -22,8 +22,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-#app{
-    padding-top: 172px !important;
+#msg{
+  color: rgba(240, 169, 11, 0.84);
 }
 
 h1, h2 {
@@ -41,6 +41,6 @@ li {
 }
 
 a {
-  color: #000000;
+  color: rgba(224, 199, 27, 0.72);
 }
 </style>

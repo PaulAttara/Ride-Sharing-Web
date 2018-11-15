@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{padding: $route.path === '/' ? '172px' : '10px'}">
     <div>
-      <img src="./assets/logo.png" align="center">
+      <img src="./assets/logo4.png" align="center">
     </div>
     <router-view></router-view>
   </div>
@@ -16,7 +16,7 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  background-color: hsla(275, 97%, 50%, 0.57);
+  background-color: hsla(269, 96%, 50%, 0.73);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
