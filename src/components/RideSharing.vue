@@ -23,7 +23,7 @@
         </td>
       </tr>
     </table>
-    <router-link to="/app/login">Navigate to login</router-link>
+    <router-link to="/app/login">Log Out</router-link>
     <p>
       <span v-if="errorParticipant" style="color:red">Error: {{errorParticipant}} </span>
     </p>

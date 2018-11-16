@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="{padding: $route.path === '/' ? '172px' : '10px'}">
+  <div id="app" :style="{padding: $route.path === '/' ? '165px' : '10px'}">
     <div>
       <img src="./assets/logo4.png" align="center">
     </div>

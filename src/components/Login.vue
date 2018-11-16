@@ -8,6 +8,9 @@
     <p>
       <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
     </p>
+    <p>
+      <router-link to="/">Back to HomePage</router-link>
+    </p>
   </div>
 </template>
 
