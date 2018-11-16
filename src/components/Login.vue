@@ -5,6 +5,9 @@
       <li><input type="password" v-model="password" placeholder="Password"></li>
       <li><button @click="login(username, password)">Login</button></li>
     </ul>
+    <p>
+      <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
+    </p>
   </div>
 </template>
 
