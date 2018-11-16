@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import RideSharing from '@/components/RideSharing'
-import Login from '@/components/Login'
-import About from '@/components/About'
+import Hello from '@/components/Hello.vue'
+import RideSharing from '@/components/RideSharing.vue'
+import Login from '@/components/Login.vue'
+import About from '@/components/About.vue'
 
 Vue.use(Router)
 
