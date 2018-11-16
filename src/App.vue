@@ -23,13 +23,18 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   height: inherit;
+  overflow: auto;
 }
 
 body{
   height: inherit;
+  margin:0;
+  padding:0;
 }
 
 html{
+  margin:0;
+  padding:0;
   height: 100%;
 }
 </style>

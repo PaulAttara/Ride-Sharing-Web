@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello.vue'
-import RideSharing from '@/components/RideSharing.vue'
+import FleetStatus from '@/components/FleetStatus.vue'
 import Login from '@/components/Login.vue'
 import About from '@/components/About.vue'
 
@@ -16,8 +16,8 @@ export default new Router({
     },
     {
       path: '/app',
-      name: 'RideSharing',
-      component: RideSharing
+      name: 'FleetStatus',
+      component: FleetStatus
     },
     {
       path: '/app/login',
