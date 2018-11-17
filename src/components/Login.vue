@@ -3,13 +3,13 @@
     <ul>
       <li><input type="text" v-model="username" placeholder="Username"></li>
       <li><input type="password" v-model="password" placeholder="Password"></li>
-      <li><button @click="login(username, password)">Login</button></li>
+      <li><button class="loginbutton" @click="login(username, password)">Login</button></li>
     </ul>
     <p>
       <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
     </p>
     <p>
-      <router-link to="/">Back to HomePage</router-link>
+      <router-link to="/">Back to Home</router-link>
     </p>
   </div>
 </template>
@@ -21,6 +21,7 @@
 
 #login{
   padding-top: 100px;
+  
 }
 
 ul {
@@ -29,8 +30,20 @@ ul {
 }
 
 li {
-  display: inline-block;
-  margin: 0 10px;
+  margin: 0 0 20px 0;
+}
+
+button {
+font-size: 24px;
+background-color: #ffffff;
+border-radius: 10px;
+
+}
+
+.loginbutton:hover {
+ color: #ffffff; /* Light Blue */
+ background-color: #0590fa; /* Light Blue */
+
 }
 
 </style>

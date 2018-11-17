@@ -1,11 +1,14 @@
 <template>
   <div id="eventregistration">
     <div class="sidenav">
-      <router-link to="/app">Fleet Overview</router-link>
-      <router-link to="/app/login">Rankings</router-link>
-      <router-link to="/app/about">About</router-link>
+   
+      <router-link to="/app/my-account"><b>My Account</b></router-link>
+      <router-link to="/app/fleet-overview">Fleet Overview</router-link>
+      <router-link to="/app/rankings">Rankings</router-link>
       <router-link to="/app/login">Log Out</router-link>
     </div>
+    <p> YOU ARE LOGGED IN, MAIN LOGIN PAGE, PLACE DEFAULT USER INFO, PAGE SEPARATE FROM SIDEBAR MENUS 
+    </p>
   </div>
 </template>
 
@@ -24,14 +27,16 @@
   /* The sidebar menu */
   .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
+    width: 15%; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color:rgba(0, 16, 71, 0.83); /* Black */
+    background-color:#0590fa; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
+    padding-top: 20px;    
+    border-radius: 10px;
+
   }
 
   /* The navigation menu links */
@@ -39,12 +44,12 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #ffffff;
     display: block;
   }
 
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
-    color: #f1f1f1;
+    color: black;
   }
 </style>

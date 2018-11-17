@@ -16,7 +16,7 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  background-image: linear-gradient(to bottom right, rgba(16, 57, 3, 0.85), rgba(5, 247, 175, 0.84));
+  background-image: linear-gradient(to bottom right, rgba(35, 156, 251, 0.99), rgba(35, 156, 251, 0.99));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

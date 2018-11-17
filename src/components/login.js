@@ -32,7 +32,7 @@ export default {
           if (this.response === "false") {
             this.errorLogin = "Incorrect username and password!"
           }else {
-            this.$router.push('/app');
+            this.$router.push('/app/my-account');
             this.errorLogin = "";
           }
         })

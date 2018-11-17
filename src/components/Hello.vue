@@ -23,11 +23,13 @@ export default {
 <style scoped>
 
 #msg{
-  color: rgba(240, 169, 11, 0.84);
+  color: rgba(255,255,255, 0.9);
 }
 
 h1, h2 {
   font-weight: normal;
+  color: rgba(255,255,255, 0.9);
+
 }
 
 ul {
@@ -41,6 +43,8 @@ li {
 }
 
 a {
-  color: rgba(224, 199, 27, 0.72);
+  <!--color: rgba(224, 199, 27, 0.72);-->
+  color: rgba(255,255,255, 0.9);
 }
+
 </style>
