@@ -1,28 +1,155 @@
 
 <template>
-  <div id="ranking">
-    <div id="cont">
+  <div id="rankings">
       <div class="sidenav">
         <router-link to="/app/my-account">My Account</router-link>
         <router-link to="/app/fleet-overview">Fleet Overview</router-link>
         <router-link to="/app/rankings"><b>Rankings</b></router-link>
         <router-link to="/app/login">Log Out</router-link>
       </div>
-      <p>RANKINGS PAGE</p>
-    </div>
+      <div id="searchField">
+
+
+        <label for="start">Start date:</label>
+          <input type="date" id="start" name="trip-start"
+            value="2018-07-22"
+            min="2000-01-01" max="2999-12-31">
+
+            <label for="end"> End date:</label>
+              <input type="date" id="start" name="trip-start"
+                value="2018-07-22"
+                min="2000-01-01" max="2999-12-31">
+
+
+      </div>
+      <div id="routes">
+        <table>
+          <thead>
+          <tr id="header">
+            <th class="th">Route Id</th>
+            <th class="th">Start Location</th>
+            <th class="th">Destination</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="route in sortedRoutes">
+            <td>{{route.id}}</td>
+            <td>{{route.start}}</td>
+            <td>{{route.dest}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="passenger">
+        <table>
+          <thead>
+          <tr id="header">
+            <th class="th">Ranking</th>
+            <th class="th">Passenger username</th>
+            <th class="th">Trips completed</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="driver">
+        <table>
+          <thead>
+          <tr id="header">
+            <th class="th">Ranking</th>
+            <th class="th">Driver Username</th>
+            <th class="th">Trips Completed</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <span v-if="errorRoute" style="color:red">Error: {{errorRoute}} </span>
+      </p>
   </div>
 </template>
 
-<script src="../jsFiles/ranking.js">
+<script src="../jsFiles/rankings.js">
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
- #cont {
+ #routes {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background-color: rgba(224, 199, 27, 0.72)
+    width: 35.7%;
+    height: 26%;
+    margin-left: 16%;
+    position: absolute;
+    border: 1px solid black;
+    background-color: #c9c9c4;
+    overflow: auto;
+    overflow-x: hidden;
+    margin-bottom: 2%;
   }
+
+  #passenger {
+     font-family: 'Avenir', Helvetica, Arial, sans-serif;
+     color: #2c3e50;
+     width: 35.7%;
+     height: 26%;
+     margin-left: 60%;
+     margin-bottom: 2%;
+     position: absolute;
+     border: 1px solid black;
+     background-color: #c9c9c4;
+     overflow: auto;
+     overflow-x: hidden;
+
+   }
+
+   #driver {
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      color: #2c3e50;
+      width: 35.7%;
+      height: 26%;
+      margin-top: 20%;
+      margin-left: 39%;
+      position: absolute;
+      border: 1px solid black;
+      background-color: #c9c9c4;
+      overflow: auto;
+      overflow-x: hidden;
+
+    }
+  tr:nth-child(even) {
+      background-color: #babab5;
+  }
+
+  #searchField{
+    margin: 30px 0px 30px 0px;
+  }
+
+  table{
+    table-layout: fixed;
+    width: 100.25%;
+    height: auto;
+  }
+
+  .th{
+    background-color: #1B93F7;
+    position: sticky;
+    top:0;
+  }
+
   #txt{
     padding-left: 10px;
   }
