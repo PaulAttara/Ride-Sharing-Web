@@ -33,10 +33,10 @@ export default {
       .then(response => {
         // JSON responses are automatically parsed.
         this.response = response.data;
-        //console.log(this.response[0].car.driver.username)
         //console.log(this.response.length)
         for (var i = 0; i < this.response.length; i++) {
-          var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", response.data[i].date, "en route");
+          var newDate = response.data[0].date.toString();
+          var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], "en route");
           this.routes.push(route);
         }
       })
