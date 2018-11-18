@@ -36,12 +36,12 @@
           <tbody>
           <tr v-for="route in routes">
             <td>{{route.id}}</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
+            <td>{{route.dName}}</td>
+            <td>{{route.seats}}</td>
+            <td>{{route.start}}</td>
+            <td>{{route.dest}}</td>
+            <td>{{route.date}}</td>
+            <td>{{route.status}}</td>
           </tr>
           </tbody>
         </table>
