@@ -14,6 +14,7 @@
           <option value="">Driver Name</option>
           <option value="">Start Location</option>
           <option value="">Destination</option>
+          <option value="">Date</option>
           <option value="">Status</option>
         </select>
         <input type="text" placeholder="Search...">
@@ -27,6 +28,7 @@
             <th class="th">Driver Name</th>
             <th class="th">Start Location</th>
             <th class="th">Destination</th>
+            <th class="th">Date</th>
             <th class="th">Status</th>
           </tr>
           </thead>
@@ -37,22 +39,10 @@
             <td>something</td>
             <td>something</td>
             <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
             <td>something</td>
           </tr>
           <tr>
             <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
             <td>something</td>
             <td>something</td>
             <td>something</td>
@@ -65,22 +55,10 @@
             <td>something</td>
             <td>something</td>
             <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
             <td>something</td>
           </tr>
           <tr>
             <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
             <td>something</td>
             <td>something</td>
             <td>something</td>
@@ -93,22 +71,10 @@
             <td>something</td>
             <td>something</td>
             <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
             <td>something</td>
           </tr>
           <tr>
             <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
             <td>something</td>
             <td>something</td>
             <td>something</td>
@@ -121,22 +87,10 @@
             <td>something</td>
             <td>something</td>
             <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
             <td>something</td>
           </tr>
           <tr>
             <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
             <td>something</td>
             <td>something</td>
             <td>something</td>
@@ -149,8 +103,90 @@
             <td>something</td>
             <td>something</td>
             <td>something</td>
+            <td>something</td>
           </tr>
           <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
             <td>something</td>
             <td>something</td>
             <td>something</td>
