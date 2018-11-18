@@ -1,15 +1,165 @@
 
 <template>
   <div class="fleet-overview">
-    <div id="cont">
       <div class="sidenav">
         <router-link to="/app/my-account">My Account</router-link>
         <router-link to="/app/fleet-overview"><b>Fleet Overview</b></router-link>
         <router-link to="/app/rankings">Rankings</router-link>
         <router-link to="/app/login">Log Out</router-link>
       </div>
-      <p>FLEET OVERVIEW PAGE</p>
-    </div>
+      <div id="searchField">
+        <select>
+          <option value="" hidden>Search By...</option>
+          <option value="">Route Id</option>
+          <option value="">Driver Name</option>
+          <option value="">Start Location</option>
+          <option value="">Destination</option>
+          <option value="">Status</option>
+        </select>
+        <input type="text" placeholder="Search...">
+        <button class="searchButton">Search</button>
+      </div>
+      <div id="cont">
+        <table>
+          <thead>
+          <tr id="header">
+            <th class="th">Route Id</th>
+            <th class="th">Driver Name</th>
+            <th class="th">Start Location</th>
+            <th class="th">Destination</th>
+            <th class="th">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          <tr>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+            <td>something</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
   </div>
 </template>
 
@@ -21,8 +171,35 @@
  #cont {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background-color: rgba(224, 199, 27, 0.72)
+    width: 71.7%;
+    height: 60%;
+    margin-left: 20.8%;
+    position: absolute;
+    border: 1px solid black;
+    background-color: #c9c9c4;
+    overflow: auto;
   }
+
+  tr:nth-child(even) {
+      background-color: #babab5;
+  }
+
+  #searchField{
+    margin: 30px 0px 30px 0px;
+  }
+
+  table{
+    table-layout: fixed;
+    width: 100%;
+    height: auto;
+  }
+
+  .th{
+    background-color: #1B93F7;
+    position: sticky;
+    top:0;
+  }
+
   #txt{
     padding-left: 10px;
   }
