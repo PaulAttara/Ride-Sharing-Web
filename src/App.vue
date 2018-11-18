@@ -35,6 +35,7 @@ body{
 html{
   margin:0;
   padding:0;
-  height: 100%;
+  height: 105%;
+  background-image: linear-gradient(to bottom right, rgba(35, 156, 251, 0.99), rgba(35, 156, 251, 0.99));
 }
 </style>

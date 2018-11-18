@@ -1,6 +1,6 @@
 
 <template>
-  <div class="fleet-overview">
+  <div id="fleet-overview">
       <div class="sidenav">
         <router-link to="/app/my-account">My Account</router-link>
         <router-link to="/app/fleet-overview"><b>Fleet Overview</b></router-link>
@@ -26,6 +26,7 @@
           <tr id="header">
             <th class="th">Route Id</th>
             <th class="th">Driver Name</th>
+            <th class="th">Seats Avail.</th>
             <th class="th">Start Location</th>
             <th class="th">Destination</th>
             <th class="th">Date</th>
@@ -33,159 +34,8 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
-          <tr>
+          <tr v-for="route in routes">
+            <td>{{route.id}}</td>
             <td>something</td>
             <td>something</td>
             <td>something</td>
@@ -196,6 +46,9 @@
           </tbody>
         </table>
       </div>
+      <p>
+        <span v-if="errorRoute" style="color:red">Error: {{errorRoute}} </span>
+      </p>
   </div>
 </template>
 
