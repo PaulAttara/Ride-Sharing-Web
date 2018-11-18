@@ -190,7 +190,7 @@
 
   table{
     table-layout: fixed;
-    width: 100%;
+    width: 100.25%;
     height: auto;
   }
 
