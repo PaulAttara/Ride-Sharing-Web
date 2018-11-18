@@ -1,22 +1,22 @@
 <template>
-  <div id="eventregistration">
-    <div class="sidenav">
-   
-      <router-link to="/app/my-account"><b>My Account</b></router-link>
-      <router-link to="/app/fleet-overview">Fleet Overview</router-link>
-      <router-link to="/app/rankings">Rankings</router-link>
-      <router-link to="/app/login">Log Out</router-link>
+  <div id="account">
+    <div id="cont">
+      <div class="sidenav">
+        <router-link to="/app/my-account"><b>My Account</b></router-link>
+        <router-link to="/app/fleet-overview">Fleet Overview</router-link>
+        <router-link to="/app/rankings">Rankings</router-link>
+        <router-link to="/app/login">Log Out</router-link>
+      </div>
+      <p> YOU ARE LOGGED IN, MAIN LOGIN PAGE, PLACE DEFAULT USER INFO, PAGE SEPARATE FROM SIDEBAR MENUS</p>
     </div>
-    <p> YOU ARE LOGGED IN, MAIN LOGIN PAGE, PLACE DEFAULT USER INFO, PAGE SEPARATE FROM SIDEBAR MENUS 
-    </p>
   </div>
 </template>
 
-<script src="./registration.js">
+<script src="../jsFiles/account.js">
 </script>
 
 <style>
-  #eventregistration {
+  #cont {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     background-color: rgba(224, 199, 27, 0.72)
@@ -34,7 +34,7 @@
     left: 0;
     background-color:#0590fa; /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;    
+    padding-top: 20px;
     border-radius: 10px;
 
   }

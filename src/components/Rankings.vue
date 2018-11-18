@@ -1,31 +1,24 @@
 
 <template>
-  <div class="fleet-overview">
-    <div id="eventregistration">
-    <div class="sidenav">
-      <router-link to="/app/my-account">My Account</router-link>
-      <router-link to="/app/fleet-overview">Fleet Overview</router-link>
-      <router-link to="/app/rankings"><b>Rankings</b></router-link>
-      <router-link to="/app/login">Log Out</router-link>
+  <div id="ranking">
+    <div id="cont">
+      <div class="sidenav">
+        <router-link to="/app/my-account">My Account</router-link>
+        <router-link to="/app/fleet-overview">Fleet Overview</router-link>
+        <router-link to="/app/rankings"><b>Rankings</b></router-link>
+        <router-link to="/app/login">Log Out</router-link>
+      </div>
+      <p>RANKINGS PAGE</p>
     </div>
-    <p>RANKINGS PAGE 
-    </p>
-  </div>
   </div>
 </template>
-<script>
-export default {
-  name: 'home',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
+
+<script src="../jsFiles/ranking.js">
 </script>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
- #eventregistration {
+ #cont {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     background-color: rgba(224, 199, 27, 0.72)
@@ -43,7 +36,7 @@ export default {
     left: 0;
     background-color:#0590fa; /* Light Blue */
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;    
+    padding-top: 20px;
     border-radius: 10px;
 
   }

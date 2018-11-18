@@ -14,14 +14,14 @@
   </div>
 </template>
 
-<script src="./login.js">
+<script src="../jsFiles/login.js">
 </script>
 
 <style scoped>
 
 #login{
   padding-top: 100px;
-  
+
 }
 
 ul {
