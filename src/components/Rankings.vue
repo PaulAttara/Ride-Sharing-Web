@@ -90,7 +90,7 @@
  #routes {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    width: 35.7%;
+    width: 40%;
     height: 26%;
     margin-left: 16%;
     position: absolute;
@@ -104,9 +104,9 @@
   #passenger {
      font-family: 'Avenir', Helvetica, Arial, sans-serif;
      color: #2c3e50;
-     width: 35.7%;
+     width: 40%;
      height: 26%;
-     margin-left: 60%;
+     margin-left: 57.7%;
      margin-bottom: 2%;
      position: absolute;
      border: 1px solid black;
@@ -119,10 +119,10 @@
    #driver {
       font-family: 'Avenir', Helvetica, Arial, sans-serif;
       color: #2c3e50;
-      width: 35.7%;
+      width: 40%;
       height: 26%;
-      margin-top: 20%;
-      margin-left: 39%;
+      margin-top: 19%;
+      margin-left: 37%;
       position: absolute;
       border: 1px solid black;
       background-color: #c9c9c4;
@@ -136,6 +136,7 @@
 
   #searchField{
     margin: 30px 0px 30px 0px;
+    margin-left: 10%;
   }
 
   table{
@@ -144,10 +145,20 @@
     height: auto;
   }
 
+  p{
+    margin-top: 17.5%;
+    margin-left: 12%;
+  }
+
   .th{
     background-color: #1B93F7;
     position: sticky;
     top:0;
+  }
+
+  input{
+    border: 1px solid black;
+    border-radius: 5px;
   }
 
   #txt{
