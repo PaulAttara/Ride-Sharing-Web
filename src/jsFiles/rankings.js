@@ -9,16 +9,32 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-function RouteDto(routeId, start, dest){
-  this.routeId = routeId;
+function RouteDto(id, dName, seats, start, dest, date, status){
+  this.id = id;
+  this.dName = dName;
+  this.seats = seats;
   this.start = start;
   this.dest = dest;
+  this.date = date;
+  this.status = status;
 }
-function DriverDto(id, driverName, driverRanking, numTrips){
-  this.driverId = driverId;
-  this.driverName = driverName;
-  this.driverRanking = driverRanking;
+
+function SortedRouteDto(sortedOccurences, sortedStart, sortedEnd){
+  this.sortedOccurences = sortedOccurences;
+  this.sortedStart = sortedStart;
+  this.sortedEnd = sortedEnd;
+}
+
+function DriverDto(avgrating, username, numTrips){
+  this.avgRating = avgrating;
+  this.username = username;
   this.numTrips = numTrips;
+}
+
+function SortedDriverDto(sortedAvgrating, sortedUsername, sortedNumTrips){
+  this.sortedAvgrating = sortedAvgrating;
+  this.sortedUsername = sortedUsername;
+  this.sortedNumTrips = sortedNumTrips;
 }
 
 function indexOfMax(arr) {
@@ -43,16 +59,24 @@ export default {
   name: 'rankings',
   data () {
     return {
+      // for routes
       routes: [],
       errorRoute: '',
       response: [],
       commonStart:[],
       commonEnd: [],
-      sortedRoutes: [],
-      counter: []
+      sortedStart: [],
+      sortedEnd: [],
+      sortedOccurences: [],
+      counter: [],
+      sRoutes: [],
+      // for driver
+      drivers: [],
+
+      sDrivers: []
     }
   },
-  created: function () {
+  created: async function () {
     // // Test participants
     // const p1 = new ParticipantDto('John')
     // const p2 = new ParticipantDto('Jill')
@@ -63,70 +87,114 @@ export default {
     // // Test event for p2 participant
     // // Sample initial content
     // this.participants = [p1, p2]
-    AXIOS.get('/api/route/getAllRoutes/', {}, {})
-      .then(response => {
-        // JSON responses are automatically parsed.
-        this.response = response.data;
-        for (var i = 0; i < this.response.length; i++) {
-          var route = new RouteDto(response.data[i].routeId, response.data[i].startLocation, response.data[i].endLocation,);
-          this.routes.push(route);
-        }
 
 
+    try{
+    let response = await AXIOS.get('/api/route/getAllRoutes/', {}, {});
+    this.response = response.data;
+    for (var i = 0; i < this.response.length; i++) {
+      var newDate = response.data[i].date.toString();
+      var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], "en route");
+      this.routes.push(route);
+    }
+    }catch(error){
+      console.log(error.message);
+      this.errorRoute = error.message;
+    }
 
-        for (var i = 0; i < this.routes.length; i++) {
-          console.log(this.routes[i].start);
-          console.log(this.routes[i].dest);
-          // go through the array so far and compare the new value to all existing values
-          var occurence=0; // set occurence to zero after every route
-          for (var x=0; x <= commonEnd.lenth; x++) {
-            // if the current start and end date exist at the current x value
-            if (this.routes[i].start === this.commonStart[x] && this.routes[i].dest === this.commonEnd[x]) {
-              occurence=1;
-              counter[i]=counter[i]+occurence; // increment the counter array at the position i, which is the same position as the current route
-            }
-            else {
-              this.commonStart.push(route[i].start);
-              this.commonEnd.push(route[i].dest);
+    //new axios get
+    try{
+    for (var i = 0; i < this.routes.length; i++) {
+      let response = await AXIOS.get('/api/location/getDestination/'+this.routes[i].id+'/', {}, {});
+      this.destination = response.data;
+      this.routes[i].dest = this.destination.city.toString();
+    }
+    }catch(error){
+    console.log(error.message);
+    this.errorRoute = error.message;
+    }
+
+    for (var i = 0; i < this.routes.length; i++) {
+      var unique = true;
+      // go through the array so far and compare the new value to all existing values
+
+        // if the current start and end date exist in the common start and end arrays, incrememnt the counter at that position
+        // set unique to false so this pair doesnt get added to the arrays
+
+        if(this.commonStart.length != 0){
+          for (var j = 0; j < this.commonStart.length; j++) {
+            if (this.commonStart[j] === this.commonStart[i] && this.commonEnd[j] === this.commonEnd[i]) {
+              this.counter[j]++;
+              unique = false;
             }
           }
         }
-          // print the routes start and end location in order based on the counter:
-          // first get position of max number in counter, then make it equal to zero
-          // add the corresponding route from routes to new array to print
-          //get the next max number...
-          while (true) {
-            var index = indexOfMax(counter);
-            this.sortedRoutes.push(routes[index])
-            if (counter[index]==-1) {
-              break;
-            }
-            else {
-              counter[index]=-1;
-            }
-          }
+        // if unique is set to true, this pair is unique. add them to the arrays and make the counter equal to 1
+      if(unique){
+          this.commonStart.push(this.routes[i].start);
+        this.commonEnd.push(this.routes[i].dest);
+        this.counter.push(1);
+      }
 
+      }
+      // print the routes start and end location in order based on the counter:
+      // first get position of max number in counter, then make it equal to minus one
+      // add the corresponding route from routes to new array to print
+      //get the next max number...
+      while (true) {
+        var index = indexOfMax(this.counter); // the index is the place in the array with the most occurences
+        if (this.counter[index]=== -1) {
+          break;
+        }
+        this.sortedStart.push(this.commonStart[index]); // add the route start with the most occurences to the sorted list
+        this.sortedEnd.push(this.commonEnd[index]); // add the route end with the most occurences to the sorted list
+        this.sortedOccurences.push(this.counter[index]);// add the number of occurences to the sorted list
+        this.counter[index]=-1; // the current max now becomes -1
 
+      }
+      for (var x = 0; x < this.sortedStart.length; x++) {
+        this.sRoutes.push(new SortedRouteDto(this.sortedOccurences[x], this.sortedStart[x], this.sortedEnd[x]));
+      }
+      // DRIVER IN ORDER BY RANK
+      try{
+      let response = await AXIOS.get('/api/user/getAllUsers/driver', {}, {});
+      this.response = response.data;
+      for (var i = 0; i < this.response.length; i++) {
+        var driver = new DriverDto(response.data[i].avgRating, response.data[i].username, response.data[i].numTrips);
+        this.drivers.push(driver);
+      }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
+      // sort the drivers by avgrating
+      // put in new sortedDriverDto
 
-      }).catch(e => {
-        var errorMsg = e.message;
-        console.log(errorMsg);
-        this.errorRoute = errorMsg;
-      });
-      // AXIOS.get('/api/route/getAllDrivers/', {}, {}) // method not created yet
-      //   .then(response => {
-      //     // JSON responses are automatically parsed.
-      //     this.response = response.data;
-      //     for (var i = 0;i <this.response.lenth; i++) {
-      //       var driver = new DriverDto(resp.data[i].driverId,resp.data[i].driverName, resp.data[i].driverRanking, resp.data[i].numTrips);
-      //       this.driver.push(driver);
-      //     }
-      //   })
+      var ratings = [];
+      for (var i = 0; i < this.drivers.length; i++){
+        ratings.push(this.drivers[i].avgRating);
+      }
+      var sortedUsername = [];
+      var sortedAvgrating =[];
+      var sortedNumTrips=[];
+        while (true) {
+        var dIndex= indexOfMax(ratings)// get index of highest rating
+        if (ratings[dIndex]=== -1) {
+          break;
+        }
+        console.log(this.drivers[dIndex].avgRating);
+        sortedUsername.push(this.drivers[dIndex].username);// add the username at the index of the highest rating
+        sortedAvgrating.push(this.drivers[dIndex].avgRating);
+        sortedNumTrips.push(this.drivers[dIndex].numTrips);
+        ratings[dIndex]=-1;// current max now becomes -1
+      }
 
+        for (var x = 0; x < sortedUsername.length; x++) {
+          this.sDrivers.push(new SortedDriverDto(sortedUsername[x], sortedAvgrating[x], sortedNumTrips[x]));
+        }
 
   },
   methods: {
-    getRoutes: function () {
-    }
+
   }
 }

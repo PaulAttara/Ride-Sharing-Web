@@ -26,16 +26,16 @@
         <table>
           <thead>
           <tr id="header">
-            <th class="th">Route Id</th>
+            <th class="th">Occurences</th>
             <th class="th">Start Location</th>
             <th class="th">Destination</th>
           </tr>
           </thead>
           <tbody>
-          <tr v-for="route in sortedRoutes">
-            <td>{{route.id}}</td>
-            <td>{{route.start}}</td>
-            <td>{{route.dest}}</td>
+          <tr v-for="sRoute in sRoutes">
+            <td>{{sRoute.sortedOccurences}}</td>
+            <td>{{sRoute.sortedStart}}</td>
+            <td>{{sRoute.sortedEnd}}</td>
           </tr>
           </tbody>
         </table>
@@ -68,10 +68,10 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
+          <tr v-for="sDriver in sDrivers">
+            <td>{{sDriver.sortedAvgrating}}</td>
+            <td>{{sDriver.sortedUsername}}</td>
+            <td>{{sDriver.sortedNumTrips}}</td>
           </tr>
           </tbody>
         </table>
