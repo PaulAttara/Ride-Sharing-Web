@@ -17,9 +17,12 @@
           <option value="date">Date</option>
           <option value="status">Status</option>
         </select>
-        <input type="text" v-model="content" placeholder="Search...">
-        <button class="searchButton" @click="search(filter, content)">Search</button>
+        <input type="text" placeholder="Search...">
+        <button class="searchButton" @click="search(filter)">Search</button>
       </div>
+      <p>
+        <span v-if="errorRoute" style="color:red">Error: {{errorRoute}} </span>
+      </p>
       <div id="cont">
         <table>
           <thead>
@@ -50,9 +53,6 @@
           </tbody>
         </table>
       </div>
-      <p>
-        <span v-if="errorRoute" style="color:red">Error: {{errorRoute}} </span>
-      </p>
   </div>
 </template>
 
@@ -61,11 +61,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
  #cont {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     width: 71.7%;
-    height: 60%;
+    height: 54%;
     margin-left: 20.8%;
     position: absolute;
     border: 1px solid black;
@@ -78,7 +79,11 @@
   }
 
   #searchField{
-    margin: 30px 0px 30px 0px;
+    margin: 15px 0px 15px 0px;
+    margin-left: 14%;
+  }
+
+  p{
     margin-left: 14%;
   }
 

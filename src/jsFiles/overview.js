@@ -27,8 +27,7 @@ export default {
       destination: [],
       errorRoute: '',
       response: [],
-      filter: '',
-      content: ''
+      filter: 'searchby',
     }
   },
   created: async function () {
@@ -58,9 +57,8 @@ export default {
   }
   },
   methods: {
-        search: function (filter, content) {
+        search: function (filter) {
           console.log(filter);
-          console.log(content);
       // AXIOS.get('/api/user/login/'+username+'/'+password+'/', {}, {})
       //   .then(response => {
       //     // JSON responses are automatically parsed.
