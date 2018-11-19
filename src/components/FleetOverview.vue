@@ -75,6 +75,7 @@
 
   #searchField{
     margin: 30px 0px 30px 0px;
+    margin-left: 14%;
   }
 
   table{

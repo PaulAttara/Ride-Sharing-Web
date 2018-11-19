@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="{padding: ($route.path === '/' ? '165px' : '10px')}">
+  <div id="app" :style="{padding: ($route.path === '/' ? '195px' : '10px')}">
     <div id="img" :style="{margin: (($route.path === '/app/my-account') || ($route.path ==='/app/fleet-overview') || ($route.path ==='/app/rankings')) ?'0% 0% 0% 12%':'0% 0% 0% 0%'}">
       <img src="./assets/logo4.png" align="center">
     </div>
