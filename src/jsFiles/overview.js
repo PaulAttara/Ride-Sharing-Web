@@ -35,7 +35,7 @@ export default {
     this.response = response.data;
     for (var i = 0; i < this.response.length; i++) {
       var newDate = response.data[i].date.toString();
-      var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], "en route");
+      var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
       this.routes.push(route);
     }
   }catch(error){

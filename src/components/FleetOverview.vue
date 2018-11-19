@@ -11,7 +11,7 @@
         <select>
           <option value="" hidden>Search By...</option>
           <option value="">Route Id</option>
-          <option value="">Driver Name</option>
+          <option value="">Username</option>
           <option value="">Start Location</option>
           <option value="">Destination</option>
           <option value="">Date</option>
@@ -25,7 +25,7 @@
           <thead>
           <tr id="header">
             <th class="th">Route Id</th>
-            <th class="th">Driver Name</th>
+            <th class="th">Driver User</th>
             <th class="th">Seats Avail.</th>
             <th class="th">Start Location</th>
             <th class="th">Destination</th>
@@ -41,7 +41,11 @@
             <td>{{route.start}}</td>
             <td>{{route.dest}}</td>
             <td>{{route.date}}</td>
-            <td>{{route.status}}</td>
+            <td v-if="route.status === 'Scheduled'" style="color: blue">{{route.status}}</td>
+            <td v-else-if="route.status === 'EnRoute'" style="color: green">{{route.status}}</td>
+            <td v-else-if="route.status === 'Ended'" style="color: orange">{{route.status}}</td>
+            <td v-else="route.status === ''">{{route.status}}</td>
+
           </tr>
           </tbody>
         </table>
