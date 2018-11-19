@@ -50,11 +50,11 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>something</td>
-            <td>something</td>
-            <td>something</td>
-          </tr>
+            <tr v-for="sPassenger in sPassengers">
+              <td>{{sPassenger.sortedAvgrating}}</td>
+              <td>{{sPassenger.sortedUsername}}</td>
+              <td>{{sPassenger.sortedNumTrips}}</td>
+            </tr>
           </tbody>
         </table>
       </div>

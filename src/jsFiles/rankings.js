@@ -36,7 +36,17 @@ function SortedDriverDto(sortedAvgrating, sortedUsername, sortedNumTrips){
   this.sortedUsername = sortedUsername;
   this.sortedNumTrips = sortedNumTrips;
 }
+function PassengerDto(avgrating, username, numTrips){
+  this.avgRating = avgrating;
+  this.username = username;
+  this.numTrips = numTrips;
+}
 
+function SortedPassengerDto(sortedAvgrating, sortedUsername, sortedNumTrips){
+  this.sortedAvgrating = sortedAvgrating;
+  this.sortedUsername = sortedUsername;
+  this.sortedNumTrips = sortedNumTrips;
+}
 function indexOfMax(arr) {
     if (arr.length === 0) {
         return -1;
@@ -70,10 +80,14 @@ export default {
       sortedOccurences: [],
       counter: [],
       sRoutes: [],
+
       // for driver
       drivers: [],
+      sDrivers: [],
 
-      sDrivers: []
+      // for passenger
+      passengers: [],
+      sPassengers: []
     }
   },
   created: async function () {
@@ -182,7 +196,6 @@ export default {
         if (ratings[dIndex]=== -1) {
           break;
         }
-        console.log(this.drivers[dIndex].avgRating);
         sortedUsername.push(this.drivers[dIndex].username);// add the username at the index of the highest rating
         sortedAvgrating.push(this.drivers[dIndex].avgRating);
         sortedNumTrips.push(this.drivers[dIndex].numTrips);
@@ -192,6 +205,44 @@ export default {
         for (var x = 0; x < sortedUsername.length; x++) {
           this.sDrivers.push(new SortedDriverDto(sortedUsername[x], sortedAvgrating[x], sortedNumTrips[x]));
         }
+
+        // PASSENGER IN ORDER BY RANK
+        try{
+        let response = await AXIOS.get('/api/user/getAllUsers/passenger', {}, {});
+        this.response = response.data;
+        for (var i = 0; i < this.response.length; i++) {
+          var passenger = new PassengerDto(response.data[i].avgRating, response.data[i].username, response.data[i].numTrips);
+          this.passengers.push(passenger);
+        }
+        }catch(error){
+          console.log(error.message);
+          this.errorRoute = error.message;
+        }
+        // sort the drivers by avgrating
+        // put in new sortedDriverDto
+
+        var pRatings = [];
+        for (var i = 0; i < this.passengers.length; i++){
+          pRatings.push(this.passengers[i].avgRating);
+        }
+        var pSortedUsername = [];
+        var pSortedAvgrating =[];
+        var pSortedNumTrips=[];
+          while (true) {
+          var pIndex= indexOfMax(pRatings)// get index of highest rating
+          if (pRatings[pIndex]=== -1) {
+            break;
+          }
+          pSortedUsername.push(this.passengers[pIndex].username);// add the username at the index of the highest rating
+          pSortedAvgrating.push(this.passengers[pIndex].avgRating);
+          pSortedNumTrips.push(this.passengers[pIndex].numTrips);
+          pRatings[pIndex]=-1;// current max now becomes -1
+        }
+          for (var x = 0; x < pSortedUsername.length; x++) {
+            this.sPassengers.push(new SortedPassengerDto(pSortedUsername[x], pSortedAvgrating[x], pSortedNumTrips[x]));
+            console.log(this.sPassengers);
+          }
+
 
   },
   methods: {
