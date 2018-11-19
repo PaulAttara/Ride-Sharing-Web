@@ -48,8 +48,8 @@ export default {
     try{
     for (var i = 0; i < this.routes.length; i++) {
       let response = await AXIOS.get('/api/location/getDestination/'+this.routes[i].id+'/', {}, {});
-      this.destination = response.data;
-      this.routes[i].dest = this.destination.city.toString();
+      this.destination.push(response.data);
+      this.routes[i].dest = this.destination[i].city.toString();
     }
   }catch(error){
     console.log(error.message);
