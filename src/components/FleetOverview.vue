@@ -8,17 +8,17 @@
         <router-link to="/app/login">Log Out</router-link>
       </div>
       <div id="searchField">
-        <select>
-          <option value="" hidden>Search By...</option>
-          <option value="">Route Id</option>
-          <option value="">Username</option>
-          <option value="">Start Location</option>
-          <option value="">Destination</option>
-          <option value="">Date</option>
-          <option value="">Status</option>
+        <select v-model="filter">
+          <option value="searchby" hidden>Search By...</option>
+          <option value="routeid">Route Id</option>
+          <option value="username">Username</option>
+          <option value="startlocation">Start Location</option>
+          <option value="destination">Destination</option>
+          <option value="date">Date</option>
+          <option value="status">Status</option>
         </select>
-        <input type="text" placeholder="Search...">
-        <button class="searchButton">Search</button>
+        <input type="text" v-model="content" placeholder="Search...">
+        <button class="searchButton" @click="search(filter, content)">Search</button>
       </div>
       <div id="cont">
         <table>

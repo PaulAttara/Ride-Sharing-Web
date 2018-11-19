@@ -26,7 +26,9 @@ export default {
       routes: [],
       destination: [],
       errorRoute: '',
-      response: []
+      response: [],
+      filter: '',
+      content: ''
     }
   },
   created: async function () {
@@ -56,5 +58,28 @@ export default {
   }
   },
   methods: {
+        search: function (filter, content) {
+          console.log(filter);
+          console.log(content);
+      // AXIOS.get('/api/user/login/'+username+'/'+password+'/', {}, {})
+      //   .then(response => {
+      //     // JSON responses are automatically parsed.
+      //     //this.response.push(response.data)
+      //     this.response = response.data.toString();
+      //     //console.log(this.response.includes("false"));
+      //     if (this.response === "false") {
+      //       this.errorLogin = "Incorrect username and password!"
+      //     }else {
+      //       this.$router.push('/app/my-account');
+      //       this.errorLogin = "";
+      //     }
+      //   })
+      //   .catch(e => {
+      //     var errorMsg = e.message;
+      //     console.log(errorMsg);
+      //     this.errorLogin = errorMsg;
+      //   });
+    }
+
   }
 }
