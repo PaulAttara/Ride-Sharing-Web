@@ -51,7 +51,7 @@ export default {
   methods: {
     search: function (filter, searchTerm) {
   
-      if (filter === 'searchBy'){
+      if (filter === 'searchby'){
         //TODO error log here
         console.log("No filter selected.");
 
