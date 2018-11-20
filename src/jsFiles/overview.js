@@ -50,25 +50,18 @@ export default {
   },
   methods: {
     search: function (filter, searchTerm) {
-  
+      this.errorRoute = '';
       if (filter === 'searchby'){
-        //TODO error log here
-        console.log("No filter selected.");
-
+        this.errorRoute = "No filter selected"
         this.onChange();
         return;
       }
-      console.log(filter);
 
       if (searchTerm === '') {
-        //TODO error log here
-        console.log("No search term entered");
-
+        this.errorRoute = "No search term entered"
         this.onChange();
         return;
       }
-    
-      console.log(searchTerm);
 
       if (this.view === 'routes') {
         this.filteredRouteView(filter, searchTerm.toLowerCase());
