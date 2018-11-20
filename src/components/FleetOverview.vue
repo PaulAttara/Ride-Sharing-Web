@@ -32,8 +32,8 @@
           <option value="number">Phone Number</option>
           <option value="rating">Rating</option>
         </select>
-        <input type="text" placeholder="Search...">
-        <button class="searchButton" @click="search(filter)">Search</button>
+        <input type="text" v-model="searchTerm" placeholder="Search...">
+        <button class="searchButton" @click="search(filter, searchTerm)">Search</button>
       </div>
       <p>
         <span v-if="errorRoute" style="color:red">Error: {{errorRoute}} </span>
