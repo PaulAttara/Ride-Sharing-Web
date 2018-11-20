@@ -39,7 +39,7 @@ export default {
       destination: [],
       errorRoute: '',
       response: [],
-      filter: 'empty',
+      filter: 'searchby',
       searchTerm: '',
       drivers: [],
       passengers: [],
@@ -51,7 +51,7 @@ export default {
   methods: {
     search: function (filter, searchTerm) {
   
-      if (filter === 'empty'){
+      if (filter === 'searchBy'){
         //TODO error log here
         console.log("No filter selected.");
 
