@@ -61,7 +61,7 @@
               <td>{{route.date}}</td>
               <td v-if="route.status === 'Scheduled'" style="color: blue">{{route.status}}</td>
               <td v-else-if="route.status === 'EnRoute'" style="color: green">{{route.status}}</td>
-              <td v-else-if="route.status === 'Ended'" style="color: orange">{{route.status}}</td>
+              <td v-else-if="route.status === 'Ended'" style="color: red">{{route.status}}</td>
               <td v-else="route.status === ''">{{route.status}}</td>
 
             </tr>
