@@ -8,7 +8,12 @@
         <router-link to="/app/login">Log Out</router-link>
       </div>
       <div id="searchField">
-        <select v-model="filter">
+        <select @change="onChange()" v-model="view">
+          <option value="routes">Routes</option>
+          <option value="passengers">Passengers</option>
+          <option value="drivers">Drivers</option>
+        </select>
+        <select v-model="filter" v-if="view === 'routes'">
           <option value="searchby" hidden>Search By...</option>
           <option value="routeid">Route Id</option>
           <option value="username">Username</option>
@@ -17,6 +22,16 @@
           <option value="date">Date</option>
           <option value="status">Status</option>
         </select>
+        <select v-model="filter" v-if="(view === 'passengers') || (view === 'drivers')">
+          <option value="searchby" hidden>Search By...</option>
+          <option value="username">Username</option>
+          <option value="trips">Num Trips</option>
+          <option value="lastname">Last Name</option>
+          <option value="city">City</option>
+          <option value="address">Address</option>
+          <option value="number">Phone Number</option>
+          <option value="rating">Rating</option>
+        </select>
         <input type="text" placeholder="Search...">
         <button class="searchButton" @click="search(filter)">Search</button>
       </div>
@@ -24,7 +39,7 @@
         <span v-if="errorRoute" style="color:red">Error: {{errorRoute}} </span>
       </p>
       <div id="cont">
-        <table>
+        <table v-if="view === 'routes'">
           <thead>
           <tr id="header">
             <th class="th">Route Id</th>
@@ -37,19 +52,71 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="route in routes">
-            <td>{{route.id}}</td>
-            <td>{{route.dName}}</td>
-            <td>{{route.seats}}</td>
-            <td>{{route.start}}</td>
-            <td>{{route.dest}}</td>
-            <td>{{route.date}}</td>
-            <td v-if="route.status === 'Scheduled'" style="color: blue">{{route.status}}</td>
-            <td v-else-if="route.status === 'EnRoute'" style="color: green">{{route.status}}</td>
-            <td v-else-if="route.status === 'Ended'" style="color: orange">{{route.status}}</td>
-            <td v-else="route.status === ''">{{route.status}}</td>
+            <tr v-for="route in routes">
+              <td>{{route.id}}</td>
+              <td>{{route.dName}}</td>
+              <td>{{route.seats}}</td>
+              <td>{{route.start}}</td>
+              <td>{{route.dest}}</td>
+              <td>{{route.date}}</td>
+              <td v-if="route.status === 'Scheduled'" style="color: blue">{{route.status}}</td>
+              <td v-else-if="route.status === 'EnRoute'" style="color: green">{{route.status}}</td>
+              <td v-else-if="route.status === 'Ended'" style="color: orange">{{route.status}}</td>
+              <td v-else="route.status === ''">{{route.status}}</td>
 
+            </tr>
+          </tbody>
+        </table>
+        <table v-else-if="view === 'passengers'">
+          <thead>
+          <tr id="header">
+            <th class="th">Username</th>
+            <th class="th">Trips</th>
+            <th class="th">First Name</th>
+            <th class="th">Last Name</th>
+            <th class="th">City</th>
+            <th class="th">Address</th>
+            <th class="th">Phone Number</th>
+            <th class="th">Avg Rating</th>
           </tr>
+          </thead>
+          <tbody>
+          <tr v-for="pass in passengers">
+            <td>{{pass.username}}</td>
+            <td>{{pass.numTrips}}</td>
+            <td>{{pass.firstname}}</td>
+            <td>{{pass.lastname}}</td>
+            <td>{{pass.city}}</td>
+            <td>{{pass.address}}</td>
+            <td>{{pass.phonenumber}}</td>
+            <td>{{pass.avgRating}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <table v-else-if="view === 'drivers'">
+          <thead>
+            <tr id="header">
+              <th class="th">Username</th>
+              <th class="th">Trips</th>
+              <th class="th">First Name</th>
+              <th class="th">Last Name</th>
+              <th class="th">City</th>
+              <th class="th">Address</th>
+              <th class="th">Phone Number</th>
+              <th class="th">Avg Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="driver in drivers">
+              <td>{{driver.username}}</td>
+              <td>{{driver.numTrips}}</td>
+              <td>{{driver.firstname}}</td>
+              <td>{{driver.lastname}}</td>
+              <td>{{driver.city}}</td>
+              <td>{{driver.address}}</td>
+              <td>{{driver.phonenumber}}</td>
+              <td>{{driver.avgRating}}</td>
+            </tr>
           </tbody>
         </table>
       </div>

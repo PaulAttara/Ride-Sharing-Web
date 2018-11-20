@@ -32,7 +32,7 @@ function DriverDto(avgrating, username, numTrips){
 }
 
 function SortedDriverDto(sortedAvgrating, sortedUsername, sortedNumTrips){
-  this.sortedAvgrating = sortedAvgrating;
+  this.sortedAvgrating = Math.round(sortedAvgrating*10)/10;
   this.sortedUsername = sortedUsername;
   this.sortedNumTrips = sortedNumTrips;
 }
@@ -43,7 +43,7 @@ function PassengerDto(avgrating, username, numTrips){
 }
 
 function SortedPassengerDto(sortedAvgrating, sortedUsername, sortedNumTrips){
-  this.sortedAvgrating = sortedAvgrating;
+  this.sortedAvgrating = Math.round(sortedAvgrating*10)/10;
   this.sortedUsername = sortedUsername;
   this.sortedNumTrips = sortedNumTrips;
 }
@@ -207,7 +207,7 @@ export default {
       }
 
         for (var x = 0; x < sortedUsername.length; x++) {
-          this.sDrivers.push(new SortedDriverDto(sortedUsername[x], sortedAvgrating[x], sortedNumTrips[x]));
+          this.sDrivers.push(new SortedDriverDto(sortedAvgrating[x], sortedUsername[x], sortedNumTrips[x]));
         }
 
         // PASSENGER IN ORDER BY RANK
@@ -243,7 +243,7 @@ export default {
           pRatings[pIndex]=-1;// current max now becomes -1
         }
           for (var x = 0; x < pSortedUsername.length; x++) {
-            this.sPassengers.push(new SortedPassengerDto(pSortedUsername[x], pSortedAvgrating[x], pSortedNumTrips[x]));
+            this.sPassengers.push(new SortedPassengerDto(pSortedAvgrating[x], pSortedUsername[x], pSortedNumTrips[x]));
 
           }
 
