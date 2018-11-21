@@ -80,6 +80,7 @@ export default {
       sortedOccurences: [],
       counter: [],
       sRoutes: [],
+      newSRoutes: [],
 
       // for driver
       drivers: [],
@@ -87,7 +88,11 @@ export default {
 
       // for passenger
       passengers: [],
-      sPassengers: []
+      sPassengers: [],
+
+      //search
+      startDate: '',
+      endDate: ''
     }
   },
   created: async function () {
@@ -95,6 +100,7 @@ export default {
     try{
     let response = await AXIOS.get('/api/route/getAllRoutes/', {}, {});
     this.response = response.data;
+
     for (var i = 0; i < this.response.length; i++) {
       var newDate = response.data[i].date.toString();
       var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], "en route");
@@ -265,6 +271,17 @@ export default {
   },
   
   methods: {
+    searchDates: function(startDate, endDate){
+      if(startDate === '' || endDate === ''){
+          this.errorRoute = "Please Enter Valid Start and End Dates.";
+          return;
+      }
+      //if the search is valid, clear error message from screen.
+      this.errorRoute = "";
+
+      
+
+    }
 
   }
 }

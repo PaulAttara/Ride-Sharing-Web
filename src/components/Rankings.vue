@@ -11,14 +11,17 @@
 
 
         <label for="start">Start date:</label>
-          <input type="date" id="start" name="trip-start"
+          <input type="date" v-model="startDate" id="start" name="trip-start"
             value="2018-07-22"
             min="2000-01-01" max="2999-12-31">
 
             <label for="end"> End date:</label>
-              <input type="date" id="start" name="trip-start"
+              <input type="date" v-model="endDate" id="start" name="trip-start"
                 value="2018-07-22"
                 min="2000-01-01" max="2999-12-31">
+
+            <button class="searchDateButton" @click="searchDates(startDate, endDate)">Search</button>
+
 
 
       </div>
@@ -77,7 +80,7 @@
         </table>
       </div>
       <p>
-        <span v-if="errorRoute" style="color:red">Error: {{errorRoute}} </span>
+        <span v-if="errorRoute" div id="error" style="color:red">Error: {{errorRoute}} </span>
       </p>
   </div>
 </template>
@@ -163,6 +166,14 @@
 
   #txt{
     padding-left: 10px;
+  }
+
+  #error{
+    width: 30%;    
+    left: 500px;
+    position: fixed;
+    bottom: 0;
+
   }
   /* The sidebar menu */
   .sidenav {
