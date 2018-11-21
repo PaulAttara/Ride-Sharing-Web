@@ -286,6 +286,16 @@ export default {
       this.errorRoute = "";
 
       this.NEWroutes.length = 0;
+      this.commonStart.length = 0;
+      this.commonEnd.length = 0;
+      this.counter.length = 0;
+      this.sortedStart.length = 0;
+      this.sortedEnd.length = 0;
+      this.sortedOccurences.length = 0;
+      this.sRoutes.length = 0;
+     
+
+      
 
       var startD = new Date(startDate.toString());
       var endD = new Date(endDate.toString());
@@ -299,8 +309,104 @@ export default {
         }
       }
 
-      console.log(this.NEWroutes);
+    for (var i = 0; i < this.NEWroutes.length; i++) {
+      var unique = true;
+      // go through the array so far and compare the new value to all existing values
+      // if the current start and end date exist in the common start and end arrays, incrememnt the counter at that position
+      // set unique to false so this pair doesnt get added to the arrays
 
+        if(this.commonStart.length != 0){
+          for (var j = 0; j < this.commonStart.length; j++) {
+            console.log( " commonStart at current J  " + this.commonStart[j]);
+
+            if (this.commonStart[j] === this.NEWroutes[i].start && this.commonEnd[j] === this.NEWroutes[i].dest) {
+
+              this.counter[j]++;
+
+              unique = false;
+            }
+          }
+        }
+        // if unique is set to true, this pair is unique. add them to the arrays and make the counter equal to 1
+      if(unique){
+
+        this.commonStart.push(this.NEWroutes[i].start);
+        this.commonEnd.push(this.NEWroutes[i].dest);
+        this.counter.push(1);
+
+        }
+
+      }
+      // print the routes start and end location in order based on the counter:
+      // first get position of max number in counter, then make it equal to minus one
+      // add the corresponding route from routes to new array to print
+      //get the next max number...
+      while (true) {
+
+        var index = indexOfMax(this.counter); // the index is the place in the array with the most occurences
+        if (this.counter[index]=== -1) {
+          break;
+        }
+
+        this.sortedStart.push(this.commonStart[index]); // add the route start with the most occurences to the sorted list
+        this.sortedEnd.push(this.commonEnd[index]); // add the route end with the most occurences to the sorted list
+        this.sortedOccurences.push(this.counter[index]);// add the number of occurences to the sorted list
+        this.counter[index]=-1; // the current max now becomes -1
+
+      }
+
+      // make a new sorted  DTO to use to display the routes
+      for (var x = 0; x < this.sortedStart.length; x++) {
+        this.sRoutes.push(new SortedRouteDto(this.sortedOccurences[x], this.sortedStart[x], this.sortedEnd[x]));
+      }
+
+   /*   //FOR DRIVERS
+      this.sDrivers.length =0;
+
+      try{
+      let response = await AXIOS.get('/api/user/getAllUsers/driver', {}, {});
+      this.response = response.data;
+      for (var i = 0; i < this.response.length; i++) {
+        var driver = new DriverDto(response.data[i].avgRating, response.data[i].username, response.data[i].numTrips);
+        this.drivers.push(driver);
+      }
+
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
+
+      for (var o=0; i<)
+      // sort the drivers by avgrating
+      // put in new sortedDriverDto
+      var ratings = [];
+      for (var i = 0; i < this.drivers.length; i++){// put all the avgRatings in a new ratings array
+        ratings.push(this.drivers[i].avgRating);
+      }
+
+      // set up the arrays that will store the driver data
+      var sortedUsername = [];
+      var sortedAvgrating =[];
+      var sortedNumTrips=[];
+
+
+        while (true) {
+        var dIndex= indexOfMax(ratings)// get index of highest rating
+          if (ratings[dIndex]=== -1) {
+            break;
+          }
+
+        sortedUsername.push(this.drivers[dIndex].username);// add the username at the index of the highest rating
+        sortedAvgrating.push(this.drivers[dIndex].avgRating);// add the avg rating at the proper index
+        sortedNumTrips.push(this.drivers[dIndex].numTrips);// add the num of trips at the proper index
+        ratings[dIndex]=-1;// current max now becomes -1
+
+      }
+      // make a new sorted Driver DTO to display all the sorted driver information
+        for (var x = 0; x < sortedUsername.length; x++) {
+          this.sDrivers.push(new SortedDriverDto(sortedAvgrating[x], sortedUsername[x], sortedNumTrips[x]));
+        }
+*/
 
     }
 
