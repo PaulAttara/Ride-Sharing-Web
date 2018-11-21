@@ -58,6 +58,7 @@ export default {
         this.onChange();
         return;
       }
+      console.log(filter);
 
       if (searchTerm === '') {
         this.errorRoute = "No search term entered"
@@ -86,6 +87,7 @@ export default {
 
     routeView: async function(){
       this.view='routes';
+      this.filter = 'searchby';
       this.routes = [];
       this.destination=[];
       try{
@@ -115,6 +117,8 @@ export default {
 
     passengerView: async function(){
       this.passengers = [];
+      this.filter = 'searchby';
+
       try{
       let response = await AXIOS.get('/api/user/getAllUsers/passenger', {}, {});
       this.response = response.data;
@@ -132,6 +136,8 @@ export default {
 
     driverView: async function(){
       this.drivers = [];
+      this.filter = 'searchby';
+      
       try{
       let response = await AXIOS.get('/api/user/getAllUsers/driver', {}, {});
       this.response = response.data;
