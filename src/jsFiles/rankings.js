@@ -17,6 +17,7 @@ function RouteDto(id, dName, seats, start, dest, date, status){
   this.dest = dest;
   this.date = date;
   this.status = status;
+
 }
 
 function SortedRouteDto(sortedOccurences, sortedStart, sortedEnd){
@@ -495,8 +496,9 @@ export default {
             this.sPassengers.push(new SortedPassengerDto(pSortedAvgrating[x], pSortedUsername[x], pSortedNumTrips[x]));
 
           }
+            */
     }
-    */
+  
    
 
   }
