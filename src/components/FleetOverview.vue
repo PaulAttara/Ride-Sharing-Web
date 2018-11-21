@@ -13,7 +13,7 @@
           <option value="passengers">Passengers</option>
           <option value="drivers">Drivers</option>
         </select>
-        <select v-model="filter" v-if="view === 'routes'">
+        <select v-model="filter" v-if="view === 'routes'" id="filterselect">
           <option value="searchby" hidden>Search By...</option>
           <option value="routeid">Route Id</option>
           <option value="username">Username</option>
@@ -22,7 +22,7 @@
           <option value="date">Date</option>
           <option value="status">Status</option>
         </select>
-        <select v-model="filter" v-if="(view === 'passengers') || (view === 'drivers')">
+        <select v-model="filter" v-if="(view === 'passengers') || (view === 'drivers')" id="filterselect">
           <option value="searchby" hidden>Search By...</option>
           <option value="username">Username</option>
           <option value="trips">Num Trips</option>
@@ -34,10 +34,10 @@
           <option value="status">Status</option>
         </select>
         <input type="text" v-model="searchTerm" placeholder="Search...">
-        <button class="searchButton" @click="search(filter, searchTerm)">Search</button>
+        <button class="searchButton" @click="search(filter, searchTerm)" name="searchButton">Search</button>
       </div>
       <p>
-        <span v-if="errorRoute" style="color:red">Error: {{errorRoute}} </span>
+        <span v-if="errorRoute" style="color:red" id="errorMessage">Error: {{errorRoute}} </span>
       </p>
       <div id="cont">
         <table v-if="view === 'routes'">

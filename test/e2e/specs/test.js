@@ -47,6 +47,33 @@ module.exports = {
       .assert.elementPresent('#brankings')
       .assert.elementPresent('#blogout')
       
+  },
+
+  "testing route search given destination 'mon' ": function (browser) {
+    browser  
+      .assert.elementPresent('#searchField')
+      .assert.elementPresent('input[type=text]')
+      .assert.elementPresent('button[name=searchButton]')
+      .assert.elementPresent('#filterselect')
+      .assert.elementPresent('#filterselect option[value="destination"]')
+
+      //testing if gives error when no filter selected
+      .click('button[name=searchButton]')
+      .waitForElementVisible('#errorMessage', 5000)
+      
+
+      //testing if gives error when no search input
+      .click('#filterselect option[value="destination"]')
+      .click('button[name=searchButton]')
+      .waitForElementVisible('#errorMessage', 5000)
+
+      //testing search function with destination 'mon'
+      .click('#filterselect option[value="destination"]')
+      .setValue('input[type=text]','mon')
+      .click('button[name=searchButton]')
+      .expect.element('#errorMessage').to.not.be.present;
+      
+    browser
       .click('#bmyaccount')
       .waitForElementVisible('#account', 5000)
   },
