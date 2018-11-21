@@ -68,7 +68,7 @@
             </tr>
           </tbody>
         </table>
-        <table v-else-if="view === 'passengers'">
+        <table v-else-if="view === 'passengers' || view === 'drivers'">
           <thead>
           <tr id="header">
             <th class="th">Username</th>
@@ -83,22 +83,22 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="pass in passengers">
-            <td>{{pass.username}}</td>
-            <td>{{pass.numTrips}}</td>
-            <td>{{pass.firstname}}</td>
-            <td>{{pass.lastname}}</td>
-            <td>{{pass.city}}</td>
-            <td>{{pass.address}}</td>
-            <td>{{pass.phonenumber}}</td>
-            <td>{{pass.avgRating}}</td>
-            <td v-if="pass.status === 'Active'" style="color: Green">{{pass.status}}</td>
-            <td v-else-if="pass.status === 'Inactive'" style="color: Red">{{pass.status}}</td>
-            <td v-else>{{pass.status}}</td>
+          <tr v-for="user in users">
+            <td>{{user.username}}</td>
+            <td>{{user.numTrips}}</td>
+            <td>{{user.firstname}}</td>
+            <td>{{user.lastname}}</td>
+            <td>{{user.city}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.phonenumber}}</td>
+            <td>{{user.avgRating}}</td>
+            <td v-if="user.status === 'Active'" style="color: Green">{{user.status}}</td>
+            <td v-else-if="user.status === 'Inactive'" style="color: Red">{{user.status}}</td>
+            <td v-else>{{user.status}}</td>
           </tr>
           </tbody>
         </table>
-        <table v-else-if="view === 'drivers'">
+        <table v-else-if="false">
           <thead>
             <tr id="header">
               <th class="th">Username</th>

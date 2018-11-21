@@ -37,12 +37,12 @@ export default {
     return {
       view: '',
       routes: [],
-      drivers: [],
-      passengers: [],
+      users: [],
       errorRoute: '',
       response: [],
       filter: 'searchby',
       searchTerm: '',
+      users: [],
 
     }
   },
@@ -69,10 +69,8 @@ export default {
 
       if (this.view === 'routes') {
         this.filteredRouteView(filter, searchTerm.toLowerCase());
-      }else if(this.view === 'passengers'){
-        this.filteredPassengerView(filter, searchTerm.toLowerCase());
-      }else if(this.view === 'drivers'){
-        this.filteredDriverView(filter, searchTerm.toLowerCase());
+      }else if(this.view === 'passengers' || this.view === 'drivers'){
+        this.filteredUserView(filter, searchTerm.toLowerCase());
       }
     },
 
@@ -83,11 +81,10 @@ export default {
 
       if (this.view === 'routes') {
         this.routeView();
-      }else if(this.view === 'passengers'){
-        this.passengerView();
-      }else if(this.view === 'drivers'){
-        this.driverView();
+      }else if(this.view === 'passengers' || this.view === 'drivers'){
+        this.userView();
       }
+      
     },
 
     routeView: async function(){
@@ -111,35 +108,18 @@ export default {
       }
     },
 
-    passengerView: async function(){
-      this.passengers = [];
+    userView: async function(){
+      this.users = [];
+      var role = this.view.slice(0, -1); // passengers -> passenger
 
       try{
-      let response = await AXIOS.get('/api/user/getAllUsers/passenger', {}, {});
-      this.response = response.data;
-      for (var i = 0; i < this.response.length; i++) {
-        var passenger = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
+        let response = await AXIOS.get('/api/user/getAllUsers/' + role, {}, {});
+        this.response = response.data;
+        for (var i = 0; i < this.response.length; i++) {
+        var user = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
                                   response.data[i].address,response.data[i].phoneNumber,response.data[i].avgRating,
                                    response.data[i].username, response.data[i].numTrips, response.data[i].userStatus);
-        this.passengers.push(passenger);
-      }
-      }catch(error){
-        console.log(error.message);
-        this.errorRoute = error.message;
-      }
-    },
-
-    driverView: async function(){
-      this.drivers = [];
-
-      try{
-      let response = await AXIOS.get('/api/user/getAllUsers/driver', {}, {});
-      this.response = response.data;
-      for (var i = 0; i < this.response.length; i++) {
-        var driver = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
-                                  response.data[i].address,response.data[i].phoneNumber,response.data[i].avgRating,
-                                   response.data[i].username, response.data[i].numTrips, response.data[i].userStatus);
-        this.drivers.push(driver);
+        this.users.push(user);
       }
       }catch(error){
         console.log(error.message);
@@ -201,126 +181,70 @@ export default {
       }
     },
 
-    filteredPassengerView: async function(filter, searchTerm) {
-      this.passengers = [];
+    filteredUserView: async function(filter, searchTerm) {
+      this.users = [];
+      var role = this.view.slice(0, -1);
+
       try{
-      let response = await AXIOS.get('/api/user/getAllUsers/passenger', {}, {});
+      let response = await AXIOS.get('/api/user/getAllUsers/' + role, {}, {});
       this.response = response.data;
       for (var i = 0; i < this.response.length; i++) {
-        var passenger = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
+        var user = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
                                  response.data[i].address,response.data[i].phoneNumber,response.data[i].avgRating,
                                  response.data[i].username, response.data[i].numTrips, response.data[i].userStatus);
         switch (filter) {
           case "username":
             if (response.data[i].username.toString().toLowerCase().toLowerCase().includes(searchTerm)){
-              this.passengers.push(passenger);
+              this.users.push(user);
             }
             break;
           case "status":
             if (response.data[i].userStatus.toString().toLowerCase().toLowerCase().includes(searchTerm)){
-              this.passengers.push(passenger);
+              this.users.push(user);
             }
             break;
           case "trips":
             if (response.data[i].numTrips.toString().includes(searchTerm)){
-              this.passengers.push(passenger);
+              this.users.push(user);
             }
             break;
           case "lastname":
             if (response.data[i].lastName.toString().toLowerCase().includes(searchTerm)){
-              this.passengers.push(passenger);
+              this.users.push(user);
             }
             break;
           case "city":
             if (response.data[i].city.toString().toLowerCase().includes(searchTerm)){
-              this.passengers.push(passenger);
+              this.users.push(user);
             }
             break;
           case "address":
             if (response.data[i].address.toString().toLowerCase().includes(searchTerm)){
-              this.passengers.push(passenger);
+              this.users.push(user);
             }
             break;
           case "number":
             if (response.data[i].phoneNumber.toString().includes(searchTerm)){
-              this.passengers.push(passenger);
+              this.users.push(user);
             }
             break;
           case "rating":
             if (response.data[i].avgRating.toString().includes(searchTerm)){
-              this.passengers.push(passenger);
+              this.users.push(user);
             }
             break;
           default:
-              this.passengers.push(passenger);
+          this.users.push(user);
         }
       }
       }catch(error){
         console.log(error.message);
         this.errorRoute = error.message;
       }
+
     },
 
-    filteredDriverView: async function(filter, searchTerm) {
-      this.drivers = [];
-      try{
-      let response = await AXIOS.get('/api/user/getAllUsers/driver', {}, {});
-      this.response = response.data;
-      for (var i = 0; i < this.response.length; i++) {
-        var driver = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
-                                 response.data[i].address,response.data[i].phoneNumber,response.data[i].avgRating,
-                                 response.data[i].username, response.data[i].numTrips, response.data[i].userStatus);
-
-        switch (filter) {
-          case "username":
-            if (response.data[i].username.toString().toLowerCase().includes(searchTerm)){
-              this.drivers.push(driver);
-            }
-            break;
-          case "status":
-            if (response.data[i].userStatus.toString().toLowerCase().toLowerCase().includes(searchTerm)){
-              this.passengers.push(driver);
-            }
-            break;
-          case "trips":
-            if (response.data[i].numTrips.toString().includes(searchTerm)){
-              this.drivers.push(driver);
-            }
-            break;
-          case "lastname":
-            if (response.data[i].lastName.toString().toLowerCase().includes(searchTerm)){
-              this.drivers.push(driver);
-            }
-            break;
-          case "city":
-            if (response.data[i].city.toString().toLowerCase().includes(searchTerm)){
-              this.drivers.push(driver);
-            }
-            break;
-          case "address":
-            if (response.data[i].address.toString().toLowerCase().includes(searchTerm)){
-              this.drivers.push(driver);
-            }
-            break;
-          case "number":
-            if (response.data[i].phoneNumber.toString().includes(searchTerm)){
-              this.drivers.push(driver);
-            }
-            break;
-          case "rating":
-            if (response.data[i].avgRating.toString().includes(searchTerm)){
-              this.drivers.push(driver);
-            }
-            break;
-          default:
-              this.drivers.push(driver);
-        }
-      }
-      }catch(error){
-        console.log(error.message);
-        this.errorRoute = error.message;
-      }
-    },
+   
 
   }
 }
