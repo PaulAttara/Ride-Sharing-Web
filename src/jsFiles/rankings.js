@@ -273,9 +273,16 @@ export default {
   },
 
   methods: {
-    searchDates: function(startDate, endDate){
+    searchDates: async function(startDate, endDate){
       if(startDate === '' || endDate === ''){
           this.errorRoute = "Please Enter Valid Start and End Dates.";
+          return;
+      }
+       var startD = new Date(startDate.toString());
+      var endD = new Date(endDate.toString());
+
+      if(startDate>endDate){
+        this.errorRoute = "Start Date cannot be after End Date";
           return;
       }
       //if the search is valid, clear error message from screen.
@@ -362,7 +369,7 @@ export default {
 
       	}
       	
-    var compressedDrivers = [];
+  var compressedDrivers = [];
 	// make a copy of the input array
 	var copy = this.filteredDrivers.slice(0);
  
@@ -395,12 +402,7 @@ export default {
 		}
 	}
 
-     console.log(this.NEWroutes);
-     console.log(compressedDrivers);
-
-
-
-      var ratings = [];
+     var ratings = [];
       for (var i = 0; i < compressedDrivers.length; i++){// put all the avgRatings in a new ratings array
         ratings.push(compressedDrivers[i].avgRating);
       }
@@ -426,83 +428,85 @@ export default {
       // make a new sorted Driver DTO to display all the sorted driver information
         for (var x = 0; x < sortedUsername.length; x++) {
           this.sDrivers.push(new SortedDriverDto(sortedAvgrating[x], sortedUsername[x], sortedNumTrips[x]));
+        } 
+
+//FOR PASSENGERS
+this.sPassengers.length =0;
+this.passengers.length =0;
+var url = '/api/location/getPassengersByDate/'+startDate.toString()+'/'+endDate.toString()+'/';
+
+try{
+        let response = await AXIOS.get(url, {}, {});
+        this.response = response.data;
+        for (var i = 0; i < this.response.length; i++) {
+          var passenger = new PassengerDto(response.data[i].avgRating, response.data[i].username, response.data[i].numTrips);
+          this.passengers.push(passenger);
+        }
+        }catch(error){
+          console.log(error.message);
+          this.errorRoute = error.message;
         }
 
-/*
-//FOR PASSENGERS, filter active passengers within the timeframe
-		this.sDrivers.length =0;
-
-      for( var z = 0; z<this.NEWroutes.length; z++){
-      		
-      	this.filteredDrivers[z]= this.NEWroutes[z].dName;
-
-      	}
-      	
-    var compressedDrivers = [];
-	// make a copy of the input array
-	var copy = this.filteredDrivers.slice(0);
+  console.log(this.passengers);
+  var compressedPassengers = [];
+  // make a copy of the input array
+  var copy2 = this.passengers.slice(0);
  
-	// first loop goes over every element
-	for (var i = 0; i < this.filteredDrivers.length; i++) {
+  // first loop goes over every element
+  for (var i = 0; i < this.passengers.length; i++) {
  
-		var myCount = 0;	
-		// loop over every element in the copy and see if it's the same
-		for (var w = 0; w < copy.length; w++) {
-			if (this.filteredDrivers[i] == copy[w]) {
-				// increase amount of times duplicate is found
-				myCount++;
-				// sets item to undefined
-				delete copy[w];
-			}
-		}
+    var myCount2 = 0;  
+    // loop over every element in the copy and see if it's the same
+    for (var u = 0; u < copy2.length; u++) {
+      if (this.passengers[i] == copy2[u]) {
+        // increase amount of times duplicate is found
+        myCount2++;
+        // sets item to undefined
+        delete copy2[u];
+      }
+    }
  
-		if (myCount > 0) {
-			var a = new DriverDto();
-			a.username = this.filteredDrivers[i];
-			a.numTrips = myCount;
-			var num = (Math.random() * 5);
-			num = num.toString(); //If it's not already a String
-			num = num.slice(0, (num.indexOf("."))+2); //With 3 exposing the hundredths place
-			a.avgRating=Number(num);
-			compressedDrivers.push(a);
-		}
-	}
+    if (myCount > 0) {
+      var b = new PassengerDto();
+      b.username = this.passengers[i].username;
+      b.numTrips = myCount2;
+      b.avgRating=this.passengers[i].avgRating;
+      compressedPassengers.push(b);
+    }
+  }
 
-     console.log(this.NEWroutes);
-     console.log(compressedDrivers);
+     var ratings = [];
+     for (var i = 0; i < compressedPassengers.length; i++){// put all the avgRatings in a new ratings array
+        ratings.push(compressedPassengers[i].avgRating);
+      }
 
+      // set up the arrays that will store the driver data
+      var sortedUsername = [];
+      var sortedAvgrating =[];
+      var sortedNumTrips=[];
 
-     var pRatings = [];
-        for (var i = 0; i < this.passengers.length; i++){
-          pRatings.push(this.passengers[i].avgRating);
-        }
+      console.log(ratings);
 
-        // set up passenger arrays used for sorting
-        var pSortedUsername = [];
-        var pSortedAvgrating =[];
-        var pSortedNumTrips=[];
-
-          while (true) {
-          var pIndex= indexOfMax(pRatings)// get index of highest rating
-            if (pRatings[pIndex]=== -1) {
-              break;
-            }
-
-          pSortedUsername.push(this.passengers[pIndex].username);// add the username at the index of the highest rating
-          pSortedAvgrating.push(this.passengers[pIndex].avgRating);// add the avg rating at the proper index
-          pSortedNumTrips.push(this.passengers[pIndex].numTrips);// add the num of trips at the proper index
-          pRatings[pIndex]=-1;// current max now becomes -1
-        }
-
-        //  // make a new sorted passenger DTO to display all the sorted driver information
-          for (var x = 0; x < pSortedUsername.length; x++) {
-            this.sPassengers.push(new SortedPassengerDto(pSortedAvgrating[x], pSortedUsername[x], pSortedNumTrips[x]));
-
+        while (true) {
+        var dIndex= indexOfMax(ratings)// get index of highest rating
+          if (ratings[dIndex]=== -1) {
+            break;
           }
-            */
+
+
+        sortedUsername.push(compressedPassengers[dIndex].username);// add the username at the index of the highest rating
+        sortedAvgrating.push(compressedPassengers[dIndex].avgRating);// add the avg rating at the proper index
+        sortedNumTrips.push(compressedPassengers[dIndex].numTrips);// add the num of trips at the proper index
+        ratings[dIndex]=-1;// current max now becomes -1
+
+      }
+      // make a new sorted Driver DTO to display all the sorted driver information
+        for (var x = 0; x < sortedUsername.length; x++) {
+          this.sPassengers.push(new SortedDriverDto(sortedAvgrating[x], sortedUsername[x], sortedNumTrips[x]));
+        }
     }
   
-   
+
 
   }
 }
