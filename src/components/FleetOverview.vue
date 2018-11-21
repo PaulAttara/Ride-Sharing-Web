@@ -31,6 +31,7 @@
           <option value="address">Address</option>
           <option value="number">Phone Number</option>
           <option value="rating">Rating</option>
+          <option value="status">Status</option>
         </select>
         <input type="text" v-model="searchTerm" placeholder="Search...">
         <button class="searchButton" @click="search(filter, searchTerm)">Search</button>
@@ -78,6 +79,7 @@
             <th class="th">Address</th>
             <th class="th">Phone Number</th>
             <th class="th">Avg Rating</th>
+            <th class="th">Status</th>
           </tr>
           </thead>
           <tbody>
@@ -90,6 +92,9 @@
             <td>{{pass.address}}</td>
             <td>{{pass.phonenumber}}</td>
             <td>{{pass.avgRating}}</td>
+            <td v-if="pass.status === 'Active'" style="color: Green">{{pass.status}}</td>
+            <td v-else-if="pass.status === 'Inactive'" style="color: Red">{{pass.status}}</td>
+            <td v-else>{{pass.status}}</td>
           </tr>
           </tbody>
         </table>
@@ -104,6 +109,7 @@
               <th class="th">Address</th>
               <th class="th">Phone Number</th>
               <th class="th">Avg Rating</th>
+              <th class="th">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -116,6 +122,9 @@
               <td>{{driver.address}}</td>
               <td>{{driver.phonenumber}}</td>
               <td>{{driver.avgRating}}</td>
+              <td v-if="driver.status === 'Active'" style="color: Green">{{driver.status}}</td>
+              <td v-else-if="driver.status === 'Inactive'" style="color: Red">{{driver.status}}</td>
+              <td v-else>{{driver.status}}</td>
             </tr>
           </tbody>
         </table>

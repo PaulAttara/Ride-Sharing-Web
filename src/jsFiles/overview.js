@@ -19,7 +19,7 @@ function RouteDto(id, dName, seats, start, dest, date, status){
   this.status = status;
 }
 
-function UserDto(firstname, lastname, city, address, phonenumber, avgrating, username, numTrips){
+function UserDto(firstname, lastname, city, address, phonenumber, avgrating, username, numTrips, status){
   this.firstname = firstname;
   this.lastname = lastname;
   this.city = city;
@@ -28,6 +28,7 @@ function UserDto(firstname, lastname, city, address, phonenumber, avgrating, use
   this.avgRating = Math.round(avgrating * 10)/10;
   this.username = username;
   this.numTrips = numTrips;
+  this.status = status;
 }
 
 export default {
@@ -72,7 +73,7 @@ export default {
         this.filteredDriverView(filter, searchTerm.toLowerCase());
       }
     },
-    
+
     onChange: function(){
       if (this.view === 'routes') {
         this.routeView();
@@ -82,7 +83,7 @@ export default {
         this.driverView();
       }
     },
-    
+
     routeView: async function(){
       this.view='routes';
       this.routes = [];
@@ -111,7 +112,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
     passengerView: async function(){
       this.passengers = [];
       try{
@@ -120,7 +121,7 @@ export default {
       for (var i = 0; i < this.response.length; i++) {
         var driver = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
                                   response.data[i].address,response.data[i].phoneNumber,response.data[i].avgRating,
-                                   response.data[i].username, response.data[i].numTrips);
+                                   response.data[i].username, response.data[i].numTrips, response.data[i].userStatus);
         this.passengers.push(driver);
       }
       }catch(error){
@@ -128,7 +129,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
     driverView: async function(){
       this.drivers = [];
       try{
@@ -137,7 +138,7 @@ export default {
       for (var i = 0; i < this.response.length; i++) {
         var driver = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
                                   response.data[i].address,response.data[i].phoneNumber,response.data[i].avgRating,
-                                   response.data[i].username, response.data[i].numTrips);
+                                   response.data[i].username, response.data[i].numTrips, response.data[i].userStatus);
         this.drivers.push(driver);
       }
       }catch(error){
@@ -156,10 +157,15 @@ export default {
         for (var i = 0; i < this.response.length; i++) {
           var newDate = response.data[i].date.toString();
           var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-          
+
           switch (filter) {
             case "routeid":
               if (response.data[i].routeId.toString().includes(searchTerm)){
+                this.routes.push(route);
+              }
+              break;
+            case "username":
+              if (response.data[i].car.driver.username.toString().includes(searchTerm)){
                 this.routes.push(route);
               }
               break;
@@ -212,10 +218,15 @@ export default {
       for (var i = 0; i < this.response.length; i++) {
         var driver = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
           response.data[i].address,response.data[i].phoneNumber,response.data[i].avgRating,
-          response.data[i].username, response.data[i].numTrips);
+          response.data[i].username, response.data[i].numTrips, response.data[i].userStatus);
         switch (filter) {
           case "username":
             if (response.data[i].username.toString().toLowerCase().toLowerCase().includes(searchTerm)){
+              this.passengers.push(driver);
+            }
+            break;
+          case "status":
+            if (response.data[i].userStatus.toString().toLowerCase().toLowerCase().includes(searchTerm)){
               this.passengers.push(driver);
             }
             break;
@@ -267,12 +278,17 @@ export default {
       for (var i = 0; i < this.response.length; i++) {
         var driver = new UserDto(response.data[i].firstName,response.data[i].lastName,response.data[i].city,
           response.data[i].address,response.data[i].phoneNumber,response.data[i].avgRating,
-          response.data[i].username, response.data[i].numTrips);
+          response.data[i].username, response.data[i].numTrips, response.data[i].userStatus);
 
         switch (filter) {
           case "username":
             if (response.data[i].username.toString().toLowerCase().includes(searchTerm)){
               this.drivers.push(driver);
+            }
+            break;
+          case "status":
+            if (response.data[i].userStatus.toString().toLowerCase().toLowerCase().includes(searchTerm)){
+              this.passengers.push(driver);
             }
             break;
           case "trips":
@@ -314,6 +330,6 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
   }
 }
