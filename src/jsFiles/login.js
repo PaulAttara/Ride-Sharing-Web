@@ -38,7 +38,6 @@ export default {
       try{
       let response = await   AXIOS.get('/api/user/login/'+username+'/'+password+'/', {}, {});
       this.response = response.data.toString();
-      //console.log(this.response.includes("false"));
       if (this.response === "false") {
         this.errorLogin = "Incorrect username and password!"
       }else {
