@@ -71,6 +71,7 @@ export default {
     return {
       // for routes
       routes: [],
+      NEWroutes: [],
       errorRoute: '',
       response: [],
       commonStart:[],
@@ -100,9 +101,12 @@ export default {
     try{
     let response = await AXIOS.get('/api/route/getAllRoutes/', {}, {});
     this.response = response.data;
+    console.log(response);
 
     for (var i = 0; i < this.response.length; i++) {
       var newDate = response.data[i].date.toString();
+      newDate = newDate.substring(0, 10);
+      //console.log(newDate);
       var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], "en route");
       this.routes.push(route);
     }
@@ -119,6 +123,8 @@ export default {
       this.destination = response.data;
       this.routes[i].dest = this.destination.city.toString();
     }
+    console.log(this.routes[1]);
+
     }catch(error){
     console.log(error.message);
     this.errorRoute = error.message;
@@ -279,9 +285,25 @@ export default {
       //if the search is valid, clear error message from screen.
       this.errorRoute = "";
 
-      
+      this.NEWroutes.length = 0;
+
+      var startD = new Date(startDate.toString());
+      var endD = new Date(endDate.toString());
+
+      for(var x = 0; x < this.routes.length; x++){
+        var dateT = this.routes[x].date;
+        var  dateTemp = new Date(dateT.toString());
+
+        if(dateTemp >= startD && dateTemp <= endD){
+            this.NEWroutes.push(this.routes[x]);
+        }
+      }
+
+      console.log(this.NEWroutes);
+
 
     }
+
 
   }
 }
