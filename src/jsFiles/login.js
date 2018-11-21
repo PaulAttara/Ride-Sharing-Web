@@ -22,25 +22,33 @@ export default {
   created: function () {
   },
   methods: {
-    login: function (username, password) {
-      AXIOS.get('/api/user/login/'+username+'/'+password+'/', {}, {})
-        .then(response => {
-          // JSON responses are automatically parsed.
-          //this.response.push(response.data)
-          this.response = response.data.toString();
-          //console.log(this.response.includes("false"));
-          if (this.response === "false") {
-            this.errorLogin = "Incorrect username and password!"
-          }else {
-            this.$router.push('/app/my-account');
-            this.errorLogin = "";
-          }
-        })
-        .catch(e => {
-          var errorMsg = e.message;
-          console.log(errorMsg);
-          this.errorLogin = errorMsg;
-        });
+    login: async function (username, password) {
+      try{
+      let response = await   AXIOS.get('/api/user/getUser/'+username+'/', {}, {});
+      console.log(response.data.role);
+      if (!(response.data.role === "admin")) {
+        this.errorLogin = "Administrator access only!"
+        return;
+      }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
+
+      try{
+      let response = await   AXIOS.get('/api/user/login/'+username+'/'+password+'/', {}, {});
+      this.response = response.data.toString();
+      //console.log(this.response.includes("false"));
+      if (this.response === "false") {
+        this.errorLogin = "Incorrect username and password!"
+      }else {
+        this.$router.push('/app/my-account');
+        this.errorLogin = "";
+      }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
     }
   }
 }
