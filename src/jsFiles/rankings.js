@@ -137,7 +137,7 @@ export default {
 
         if(this.commonStart.length != 0){
           for (var j = 0; j < this.commonStart.length; j++) {
-            console.log( " commonStart at current J  " + this.commonStart[j]);
+          //  console.log( " commonStart at current J  " + this.commonStart[j]);
             if (this.commonStart[j] === this.routes[i].start && this.commonEnd[j] === this.routes[i].dest) {
 
               this.counter[j]++;
@@ -309,11 +309,7 @@ export default {
 
         if(this.commonStart.length != 0){
           for (var j = 0; j < this.commonStart.length; j++) {
-<<<<<<< HEAD
-          //  console.log( " commonStart at current J  " + this.commonStart[j]);
-
-=======
->>>>>>> ee90d811f9b06c0e46d33b3c510b8373f428908e
+          //console.log( " commonStart at current J  " + this.commonStart[j]);
             if (this.commonStart[j] === this.NEWroutes[i].start && this.commonEnd[j] === this.NEWroutes[i].dest) {
 
               this.counter[j]++;
