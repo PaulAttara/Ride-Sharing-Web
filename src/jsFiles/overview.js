@@ -71,7 +71,7 @@ export default {
         this.filteredDriverView(filter, searchTerm.toLowerCase());
       }
     },
-    
+
     onChange: function(){
       if (this.view === 'routes') {
         this.routeView();
@@ -81,7 +81,7 @@ export default {
         this.driverView();
       }
     },
-    
+
     routeView: async function(){
       this.view='routes';
       this.routes = [];
@@ -110,7 +110,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
     passengerView: async function(){
       this.passengers = [];
       try{
@@ -127,7 +127,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
     driverView: async function(){
       this.drivers = [];
       try{
@@ -163,6 +163,13 @@ export default {
               break;
             case "startlocation":
               if (response.data[i].startLocation.toString().toLowerCase().includes(searchTerm)){
+                var newDate = response.data[i].date.toString();
+                var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
+                this.routes.push(route);
+              }
+              break;
+            case "username":
+              if (response.data[i].car.driver.username.toString().toLowerCase().includes(searchTerm)){
                 var newDate = response.data[i].date.toString();
                 var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
                 this.routes.push(route);
@@ -361,6 +368,6 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
   }
 }
