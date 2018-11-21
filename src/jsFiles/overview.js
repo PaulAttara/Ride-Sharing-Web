@@ -71,7 +71,7 @@ export default {
         this.filteredDriverView(filter, searchTerm.toLowerCase());
       }
     },
-    
+
     onChange: function(){
       if (this.view === 'routes') {
         this.routeView();
@@ -81,7 +81,7 @@ export default {
         this.driverView();
       }
     },
-    
+
     routeView: async function(){
       this.view='routes';
       this.routes = [];
@@ -110,7 +110,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
     passengerView: async function(){
       this.passengers = [];
       try{
@@ -127,7 +127,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
     driverView: async function(){
       this.drivers = [];
       try{
@@ -147,64 +147,40 @@ export default {
 
     filteredRouteView: async function(filter, searchTerm) {
       this.view='routes';
+      var fRoutes = this.routes;
+      var fDestinations = this.destination;
       this.routes = [];
       this.destination=[];
       try{
-        let response = await AXIOS.get('/api/route/getAllRoutes/', {}, {});
-        this.response = response.data;
-        for (var i = 0; i < this.response.length; i++) {
+        for (var i = 0; i < fRoutes.length; i++) {
           switch (filter) {
             case "routeid":
-              if (response.data[i].routeId.toString().includes(searchTerm)){
-                var newDate = response.data[i].date.toString();
-                var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-                this.routes.push(route);
+              if (fRoutes[i].id.toString().includes(searchTerm)){
+                this.routes.push(fRoutes[i]);
               }
               break;
             case "startlocation":
-              if (response.data[i].startLocation.toString().toLowerCase().includes(searchTerm)){
-                var newDate = response.data[i].date.toString();
-                var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-                this.routes.push(route);
+              if (fRoutes[i].start.toString().toLowerCase().includes(searchTerm)){
+                this.routes.push(fRoutes[i]);
               }
               break;
             case "destination":
-              //TODO figure out destination filtering for routes
-              console.log("not implemented");
-              var newDate = response.data[i].date.toString();
-              var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-              this.routes.push(route);
+              if (fRoutes[i].dest.toString().toLowerCase().includes(searchTerm)){
+                this.routes.push(fRoutes[i]);
+              }
               break;
             case "date":
-              if (response.data[i].date.toString().includes(searchTerm)){
-                  var newDate = response.data[i].date.toString();
-                  var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-                  this.routes.push(route);
+              if (fRoutes[i].date.toString().includes(searchTerm)){
+                  this.routes.push(fRoutes[i]);
               }
               break;
             case "status":
-              if (response.data[i].status.toString().toLowerCase().includes(searchTerm)){
-                  var newDate = response.data[i].date.toString();
-                  var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-                  this.routes.push(route);
+              if (fRoutes[i].status.toString().toLowerCase().includes(searchTerm)){
+                  this.routes.push(fRoutes[i]);
               }
               break;
             default:
-              var newDate = response.data[i].date.toString();
-              var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-              this.routes.push(route);
           }
-        }
-      }catch(error){
-        console.log(error.message);
-        this.errorRoute = error.message;
-      }
-      //new axios get
-      try{
-        for (var i = 0; i < this.routes.length; i++) {
-          let response = await AXIOS.get('/api/location/getDestination/'+this.routes[i].id+'/', {}, {});
-          this.destination.push(response.data);
-          this.routes[i].dest = this.destination[i].city.toString();
         }
       }catch(error){
         console.log(error.message);
@@ -361,6 +337,6 @@ export default {
         this.errorRoute = error.message;
       }
     },
-    
+
   }
 }
