@@ -2,10 +2,10 @@
 <template>
   <div id="fleet-overview">
       <div class="sidenav">
-        <router-link to="/app/my-account">My Account</router-link>
-        <router-link to="/app/fleet-overview"><b>Fleet Overview</b></router-link>
-        <router-link to="/app/rankings">Rankings</router-link>
-        <router-link to="/app/login">Log Out</router-link>
+        <router-link to="/app/my-account" id="bmyaccount">My Account</router-link>
+        <router-link to="/app/fleet-overview" id="bfleet"><b>Fleet Overview</b></router-link>
+        <router-link to="/app/rankings" id="brankings">Rankings</router-link>
+        <router-link to="/app/login" id="blogout">Log Out</router-link>
       </div>
       <div id="searchField">
         <select @change="onChange()" v-model="view">
@@ -98,36 +98,8 @@
           </tr>
           </tbody>
         </table>
-        <table v-else-if="false">
-          <thead>
-            <tr id="header">
-              <th class="th">Username</th>
-              <th class="th">Trips</th>
-              <th class="th">First Name</th>
-              <th class="th">Last Name</th>
-              <th class="th">City</th>
-              <th class="th">Address</th>
-              <th class="th">Phone Number</th>
-              <th class="th">Avg Rating</th>
-              <th class="th">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="driver in drivers">
-              <td>{{driver.username}}</td>
-              <td>{{driver.numTrips}}</td>
-              <td>{{driver.firstname}}</td>
-              <td>{{driver.lastname}}</td>
-              <td>{{driver.city}}</td>
-              <td>{{driver.address}}</td>
-              <td>{{driver.phonenumber}}</td>
-              <td>{{driver.avgRating}}</td>
-              <td v-if="driver.status === 'Active'" style="color: Green">{{driver.status}}</td>
-              <td v-else-if="driver.status === 'Inactive'" style="color: Red">{{driver.status}}</td>
-              <td v-else>{{driver.status}}</td>
-            </tr>
-          </tbody>
-        </table>
+      
+        
       </div>
   </div>
 </template>

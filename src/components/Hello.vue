@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <ul>
-      <li><h2><router-link to="/app/login">Login</router-link></h2></li>
-      <li><h2><router-link to="/app/about">About Us</router-link></h2></li>
+      <li><h2><router-link to="/app/login" id="blogin">Login</router-link></h2></li>
+      <li><h2><router-link to="/app/about" id="babout">About Us</router-link></h2></li>
     </ul>
   </div>
 </template>

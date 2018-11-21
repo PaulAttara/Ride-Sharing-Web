@@ -16,7 +16,7 @@
     </ul>
     <h1 id="msg">{{ msg }}</h1>
     <ul>
-      <router-link to="/">Back to Home</router-link>
+      <router-link to="/" id="back">Back to Home</router-link>
     </ul>
   </div>
 </template>

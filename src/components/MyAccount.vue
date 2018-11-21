@@ -2,10 +2,10 @@
   <div id="account">
     <div id="cont">
       <div class="sidenav">
-        <router-link to="/app/my-account"><b>My Account</b></router-link>
-        <router-link to="/app/fleet-overview">Fleet Overview</router-link>
-        <router-link to="/app/rankings">Rankings</router-link>
-        <router-link to="/app/login">Log Out</router-link>
+        <router-link to="/app/my-account" id="bmyaccount"><b>My Account</b></router-link>
+        <router-link to="/app/fleet-overview" id="bfleet">Fleet Overview</router-link>
+        <router-link to="/app/rankings" id="brankings">Rankings</router-link>
+        <router-link to="/app/login" id="blogout">Log Out</router-link>
       </div>
       <p> YOU ARE LOGGED IN, MAIN LOGIN PAGE, PLACE DEFAULT USER INFO, PAGE SEPARATE FROM SIDEBAR MENUS</p>
     </div>

@@ -2,10 +2,10 @@
 <template>
   <div id="rankings">
       <div class="sidenav">
-        <router-link to="/app/my-account">My Account</router-link>
-        <router-link to="/app/fleet-overview">Fleet Overview</router-link>
-        <router-link to="/app/rankings"><b>Rankings</b></router-link>
-        <router-link to="/app/login">Log Out</router-link>
+        <router-link to="/app/my-account" id="bmyaccount">My Account</router-link>
+        <router-link to="/app/fleet-overview" id="bfleet">Fleet Overview</router-link>
+        <router-link to="/app/rankings" id="brankings"><b>Rankings</b></router-link>
+        <router-link to="/app/login" id="blogout">Log Out</router-link>
       </div>
       <div id="searchField">
 

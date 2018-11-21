@@ -3,13 +3,13 @@
     <ul>
       <li><input type="text" v-model="username" placeholder="Username"></li>
       <li><input type="password" v-model="password" placeholder="Password"></li>
-      <li><button class="loginbutton" @click="login(username, password)">Login</button></li>
+      <li><button class="loginbutton" @click="login(username, password)" name="loginbutton">Login</button></li>
     </ul>
     <p>
       <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
     </p>
     <p>
-      <router-link to="/">Back to Home</router-link>
+      <router-link to="/" id="back">Back to Home</router-link>
     </p>
   </div>
 </template>
