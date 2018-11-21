@@ -385,6 +385,9 @@ export default {
 			a.username = this.filteredDrivers[i];
 			a.numTrips = myCount;
 			var num = (Math.random() * 5);
+			if(num<3){
+				num=+2;
+			}
 			num = num.toString(); //If it's not already a String
 			num = num.slice(0, (num.indexOf("."))+2); //With 3 exposing the hundredths place
 			a.avgRating=Number(num);
