@@ -101,12 +101,9 @@ export default {
     try{
     let response = await AXIOS.get('/api/route/getAllRoutes/', {}, {});
     this.response = response.data;
-    console.log(response);
-
     for (var i = 0; i < this.response.length; i++) {
       var newDate = response.data[i].date.toString();
       newDate = newDate.substring(0, 10);
-      //console.log(newDate);
       var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], "en route");
       this.routes.push(route);
     }
@@ -123,7 +120,6 @@ export default {
       this.destination = response.data;
       this.routes[i].dest = this.destination.city.toString();
     }
-    console.log(this.routes[1]);
 
     }catch(error){
     console.log(error.message);
@@ -139,8 +135,6 @@ export default {
 
         if(this.commonStart.length != 0){
           for (var j = 0; j < this.commonStart.length; j++) {
-            console.log( " commonStart at current J  " + this.commonStart[j]);
-
             if (this.commonStart[j] === this.routes[i].start && this.commonEnd[j] === this.routes[i].dest) {
 
               this.counter[j]++;
@@ -268,14 +262,12 @@ export default {
           pRatings[pIndex]=-1;// current max now becomes -1
         }
 
-        //  // make a new sorted passenger DTO to display all the sorted driver information
+          // make a new sorted passenger DTO to display all the sorted driver information
           for (var x = 0; x < pSortedUsername.length; x++) {
             this.sPassengers.push(new SortedPassengerDto(pSortedAvgrating[x], pSortedUsername[x], pSortedNumTrips[x]));
-
           }
-
   },
-  
+
   methods: {
     searchDates: function(startDate, endDate){
       if(startDate === '' || endDate === ''){
@@ -293,9 +285,6 @@ export default {
       this.sortedEnd.length = 0;
       this.sortedOccurences.length = 0;
       this.sRoutes.length = 0;
-     
-
-      
 
       var startD = new Date(startDate.toString());
       var endD = new Date(endDate.toString());
@@ -317,8 +306,6 @@ export default {
 
         if(this.commonStart.length != 0){
           for (var j = 0; j < this.commonStart.length; j++) {
-            console.log( " commonStart at current J  " + this.commonStart[j]);
-
             if (this.commonStart[j] === this.NEWroutes[i].start && this.commonEnd[j] === this.NEWroutes[i].dest) {
 
               this.counter[j]++;
