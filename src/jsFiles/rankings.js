@@ -87,6 +87,7 @@ export default {
       // for driver
       drivers: [],
       filteredDrivers: [],
+      driverObj: [],
       sDrivers: [],
 
       // for passenger
@@ -368,18 +369,25 @@ export default {
       	this.filteredDrivers[z]= this.NEWroutes[z].dName;
 
       	}
-      	
+
+      for(var i=0; i<this.drivers.length; i++){
+        for (var t=0; t<this.filteredDrivers.length; t++){
+          if(this.filteredDrivers[t] == this.drivers[i].username)
+            this.driverObj[t]=this.drivers[i];
+        }
+      }
+      	console.log(this.driverObj);
   var compressedDrivers = [];
 	// make a copy of the input array
-	var copy = this.filteredDrivers.slice(0);
+	var copy = this.driverObj.slice(0);
  
 	// first loop goes over every element
-	for (var i = 0; i < this.filteredDrivers.length; i++) {
+	for (var i = 0; i < this.driverObj.length; i++) {
  
 		var myCount = 0;	
 		// loop over every element in the copy and see if it's the same
 		for (var w = 0; w < copy.length; w++) {
-			if (this.filteredDrivers[i] == copy[w]) {
+			if (this.driverObj[i] == copy[w]) {
 				// increase amount of times duplicate is found
 				myCount++;
 				// sets item to undefined
@@ -389,15 +397,10 @@ export default {
  
 		if (myCount > 0) {
 			var a = new DriverDto();
-			a.username = this.filteredDrivers[i];
+			a.username = this.driverObj[i].username;
 			a.numTrips = myCount;
-			var num = (Math.random() * 5);
-			if(num<3){
-				num=+2;
-			}
-			num = num.toString(); //If it's not already a String
-			num = num.slice(0, (num.indexOf("."))+2); //With 3 exposing the hundredths place
-			a.avgRating=Number(num);
+			
+			a.avgRating=this.driverObj[i].avgRating;
 			compressedDrivers.push(a);
 		}
 	}
@@ -431,8 +434,8 @@ export default {
         } 
 
 //FOR PASSENGERS
-this.sPassengers.length =0;
-this.passengers.length =0;
+this.sPassengers= [];
+this.passengers= [];
 var url = '/api/location/getPassengersByDate/'+startDate.toString()+'/'+endDate.toString()+'/';
 
 try{
@@ -448,6 +451,7 @@ try{
         }
 
   console.log(this.passengers);
+
   var compressedPassengers = [];
   // make a copy of the input array
   var copy2 = this.passengers.slice(0);
@@ -466,7 +470,7 @@ try{
       }
     }
  
-    if (myCount > 0) {
+    if (myCount2 > 0) {
       var b = new PassengerDto();
       b.username = this.passengers[i].username;
       b.numTrips = myCount2;
@@ -474,6 +478,8 @@ try{
       compressedPassengers.push(b);
     }
   }
+//compressedPassengers.push(new PassengerDto(null));
+  console.log(compressedPassengers);
 
      var ratings = [];
      for (var i = 0; i < compressedPassengers.length; i++){// put all the avgRatings in a new ratings array
