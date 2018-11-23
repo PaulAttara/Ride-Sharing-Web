@@ -1,3 +1,11 @@
+<b>Heroku</b><br/>
+name: sharefare-web<br/>
+URL: https://dashboard.heroku.com/apps/sharefare-web<br/>
+
+<b>Login</b><br/>
+Username: admin<br/>
+Password: admin<br/>
+
 # sharefare
 
 > A Vue.js web frontend for Ride Sharing App
