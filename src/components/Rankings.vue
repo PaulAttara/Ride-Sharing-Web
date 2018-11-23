@@ -2,7 +2,7 @@
 <template>
   <div id="rankings">
       <div class="sidenav">
-        <router-link to="/app/my-account" id="bmyaccount">My Account</router-link>
+        <router-link to="/app/my-account" id="bmyaccount">Admin</router-link>
         <router-link to="/app/fleet-overview" id="bfleet">Fleet Overview</router-link>
         <router-link to="/app/rankings" id="brankings"><b>Rankings</b></router-link>
         <router-link to="/app/login" id="blogout">Log Out</router-link>
@@ -21,10 +21,8 @@
                 min="2000-01-01" max="2999-12-31">
 
             <button class="searchDateButton" @click="searchDates(startDate, endDate)">Search</button>
-
-
-
       </div>
+      
       <div id="routes">
         <table>
           <thead>
@@ -169,10 +167,16 @@
   }
 
   #error{
-    width: 30%;    
-    left: 500px;
-    position: fixed;
-    bottom: 0;
+    //width: 30%;    
+    //left: 500px;
+    //position: fixed;
+    //bottom: 0;
+    position: absolute;
+    top: 30%;
+    left: 6%;
+    z-index: 999;
+    width: 100%;
+    height: 23px;
 
   }
   /* The sidebar menu */

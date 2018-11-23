@@ -2,7 +2,7 @@
 <template>
   <div id="fleet-overview">
       <div class="sidenav">
-        <router-link to="/app/my-account" id="bmyaccount">My Account</router-link>
+        <router-link to="/app/my-account" id="bmyaccount">Admin</router-link>
         <router-link to="/app/fleet-overview" id="bfleet"><b>Fleet Overview</b></router-link>
         <router-link to="/app/rankings" id="brankings">Rankings</router-link>
         <router-link to="/app/login" id="blogout">Log Out</router-link>

@@ -2,12 +2,53 @@
   <div id="account">
     <div id="cont">
       <div class="sidenav">
-        <router-link to="/app/my-account" id="bmyaccount"><b>My Account</b></router-link>
+        <router-link to="/app/my-account" id="bmyaccount"><b>Admin</b></router-link>
         <router-link to="/app/fleet-overview" id="bfleet">Fleet Overview</router-link>
         <router-link to="/app/rankings" id="brankings">Rankings</router-link>
         <router-link to="/app/login" id="blogout">Log Out</router-link>
       </div>
-      <p> YOU ARE LOGGED IN, MAIN LOGIN PAGE, PLACE DEFAULT USER INFO, PAGE SEPARATE FROM SIDEBAR MENUS</p>
+      <p> Welcome, Admin</p>
+    </div>
+
+    <div id="drivers">
+        <table>
+          <thead>
+          <tr id="header">
+            <th class="th">Driver</th>
+            <th class="th">First Name</th>
+            <th class="th">Last Name</th>
+            <th class="th">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="driver in drivers">
+            <td>{{driver.username}}</td>
+            <td>{{driver.firstname}}</td>
+            <td>{{driver.lastname}}</td>
+            <td>{{driver.status}}</td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
+    <div id="passengers">
+        <table>
+          <thead>
+          <tr id="header">
+            <th class="th">Passenger</th>
+            <th class="th">First Name</th>
+            <th class="th">Last Name</th>
+            <th class="th">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="passenger in passengers">
+            <td>{{passenger.username}}</td>
+            <td>{{passenger.firstname}}</td>
+            <td>{{passenger.lastname}}</td>
+            <td>{{passenger.status}}</td>
+          </tr>
+          </tbody>
+        </table>
     </div>
   </div>
 </template>
@@ -19,11 +60,68 @@
   #cont {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background-color: rgba(224, 199, 27, 0.72)
+    //width: 71.7%;
+    //height: 54%;
+    //margin-left: 20.8%;
+    //position: absolute;
+    //border: 1px solid black;
+    //background-color: #c9c9c4;
+    overflow: auto;
   }
+ tr:nth-child(even) {
+      background-color: #babab5;
+  }
+
+  #drivers{
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      color: #2c3e50;
+      width: 40%;
+      height: 50%;
+      //margin-top: 19%;
+      margin-left: 17%;
+      position: absolute;
+      border: 1px solid black;
+      background-color: #c9c9c4;
+      overflow: auto;
+      overflow-x: hidden;
+  }
+
+  #passengers{
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+     color: #2c3e50;
+     width: 40%;
+     height: 50%;
+     margin-left: 57.7%;
+     margin-bottom: 2%;
+     position: absolute;
+     border: 1px solid black;
+     background-color: #c9c9c4;
+     overflow: auto;
+     overflow-x: hidden;
+  }
+
+  p{
+    margin-left: 14%;
+    font-size: 36px;
+  }
+
+  table{
+    table-layout: fixed;
+    width: 100.25%;
+    height: auto;
+  }
+
+  .th{
+    background-color: #1B93F7;
+    position: sticky;
+    top:0;
+  }
+
   #txt{
     padding-left: 10px;
   }
+
+
   /* The sidebar menu */
   .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
