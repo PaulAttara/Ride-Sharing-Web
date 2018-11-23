@@ -24,8 +24,8 @@ module.exports = {
   dev: {
     env: require('./dev.env'),
     port: 8087,
-    //host:  'localhost',
-    host:  'sharefare-web.herokuapp.com',
+    //host:  'localhost',//comment out 
+    host:  'sharefare-web.herokuapp.com', //remove comment
     backendHost: 'sharefare.herokuapp.com',
     backendPort: 80,
     autoOpenBrowser: true,
