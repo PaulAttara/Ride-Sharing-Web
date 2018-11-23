@@ -45,7 +45,6 @@ export default {
       }else {
         this.$router.push('/app/my-account');
         this.errorLogin = "";
-        //this.$emit('logIn'); // this part in the child component snippet
         LoginEvent.$emit('logIn', true);
       }
       }catch(error){

@@ -7,7 +7,7 @@
         <router-link to="/app/rankings" id="brankings">Rankings</router-link>
         <router-link to="/app/login" id="blogout">Log Out</router-link>
       </div>
-      <p> Welcome, Admin</p>
+      <p id="welcome"> Welcome, Admin</p>
     </div>
 
     <div id="drivers">
@@ -104,9 +104,9 @@
      overflow-x: hidden;
   }
 
-  p{
-    //margin-left: 14%;
-    //font-size: 36px;
+  #welcome{
+    margin-left: 14%;
+    font-size: 36px;
   }
 
   table{

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LoginEvent } from '../jsFiles/account.js'
+import { LoginEvent } from '../jsFiles/LogInEvent.js'
 var config = require('../../config')
 
 
@@ -42,25 +42,10 @@ export default {
   },
   created: async function () {
 
-    //test
-    //LoginEvent.$on('logIn', clickCount => {
-    //console.log(`Oh, that's nice. It's gotten clicks! :)`)
-    //});
-    // try{
-    // let response = await AXIOS.get('/api/route/getAllRoutes/', {}, {});
-    // this.response = response.data;
-    // for (var i = 0; i < this.response.length; i++) {
-    //   var newDate = response.data[i].date.toString();
-    //   newDate = newDate.substring(0, 10);
-    //   var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], "en route");
-    //   this.routes.push(route);
-    // }
-    // }catch(error){
-    //   console.log(error.message);
-    //   this.errorRoute = error.message;
-    // }
-
-
+    // LoginEvent.$on('logIn', isLoggedIn => {
+    // console.log(`Oh, that's nice. It's gotten clicks! ${isLoggedIn} :)`);this.logIn();
+    // });
+  
 
       //Get Drivers
       try{
@@ -89,8 +74,6 @@ export default {
         console.log(error.message);
         this.errorRoute = error.message;
       }
-
-
          
   },
 
