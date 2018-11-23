@@ -101,8 +101,8 @@
   }
 
   p{
-    margin-left: 14%;
-    font-size: 36px;
+    //margin-left: 14%;
+    //font-size: 36px;
   }
 
   table{

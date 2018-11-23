@@ -1,13 +1,17 @@
 import axios from 'axios'
+import { LoginEvent } from '../jsFiles/account.js'
 var config = require('../../config')
+
 
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
+
 
 var AXIOS = axios.create({
   baseURL: backendUrl,
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
+
 
 function Driver(username, firstname, lastname, status){
   this.username = username;
@@ -15,6 +19,7 @@ function Driver(username, firstname, lastname, status){
   this.lastname = lastname;
   this.status = status;
 }
+
 
 function Passenger(username, firstname, lastname, status){
   this.username = username;
@@ -32,10 +37,15 @@ export default {
       passengers: [],
       errorRoute: '',
       response: [],
+      loggedIn: false
     }
   },
   created: async function () {
 
+    //test
+    //LoginEvent.$on('logIn', clickCount => {
+    //console.log(`Oh, that's nice. It's gotten clicks! :)`)
+    //});
     // try{
     // let response = await AXIOS.get('/api/route/getAllRoutes/', {}, {});
     // this.response = response.data;
@@ -85,6 +95,10 @@ export default {
   },
 
   methods: {
+    logIn: function () {
+      this.loggedIn = true;
+      console.log("IT WORKED");
+    }
 
   }
 }

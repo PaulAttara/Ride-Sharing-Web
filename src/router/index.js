@@ -29,7 +29,7 @@ export default new Router({
     {
       path: '/app/my-account',
       name: 'MyAccount',
-      component: MyAccount
+      component: MyAccount,
     },
     {
       path: '/app/fleet-overview',

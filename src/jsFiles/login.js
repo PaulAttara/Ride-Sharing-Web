@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { LoginEvent } from '../jsFiles/LogInEvent.js'
 var config = require('../../config')
 
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
@@ -16,7 +17,8 @@ export default {
       username: [],
       password: '',
       errorLogin: '',
-      response: ""
+      response: "",
+      loggedIn: false
     }
   },
   created: function () {
@@ -43,11 +45,14 @@ export default {
       }else {
         this.$router.push('/app/my-account');
         this.errorLogin = "";
+        //this.$emit('logIn'); // this part in the child component snippet
+        LoginEvent.$emit('logIn', true);
       }
       }catch(error){
         console.log(error.message);
         this.errorRoute = error.message;
       }
     }
+
   }
 }
