@@ -1,6 +1,6 @@
 <b>Heroku</b><br/>
 name: sharefare-web<br/>
-URL: https://dashboard.heroku.com/apps/sharefare-web<br/>
+URL: https://sharefare-web.herokuapp.com<br/>
 
 <b>Login</b><br/>
 Username: admin<br/>
