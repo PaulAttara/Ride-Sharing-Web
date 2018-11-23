@@ -50,6 +50,7 @@ export default {
     this.routeView();
   },
   methods: {
+    //function to seach for match based on filter and entry
     search: function (filter, searchTerm) {
       this.errorRoute = '';
 
@@ -73,7 +74,7 @@ export default {
         this.filteredUserView(filter, searchTerm.toLowerCase());
       }
     },
-
+    //function to switch table views
     onChange: function(){
       this.errorRoute = '';
       this.filter = 'searchby';
@@ -84,9 +85,9 @@ export default {
       }else if(this.view === 'passengers' || this.view === 'drivers'){
         this.userView();
       }
-      
-    },
 
+    },
+    //function to display route data
     routeView: async function(){
       this.view='routes';
       this.routes = [];
@@ -96,10 +97,10 @@ export default {
         for (var i = 0; i < this.response.length; i++) {
           var newDate = response.data[i].date.toString();
           var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-          
+
           let destinationResponse = await AXIOS.get('/api/location/getDestination/'+ response.data[i].routeId.toString() + '/', {}, {});
           route.dest = destinationResponse.data.city.toString();
-          
+
           this.routes.push(route);
         }
       }catch(error){
@@ -107,7 +108,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-
+    //function to display user data
     userView: async function(){
       this.users = [];
       var role = this.view.slice(0, -1); // passengers -> passenger
@@ -126,7 +127,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-
+    //function that displays filtered routes based on search entry
     filteredRouteView: async function(filter, searchTerm) {
       this.view='routes';
       this.routes = [];
@@ -136,7 +137,7 @@ export default {
         for (var i = 0; i < this.response.length; i++) {
           var newDate = response.data[i].date.toString();
           var route = new RouteDto(response.data[i].routeId, response.data[i].car.driver.username, response.data[i].seatsAvailable, response.data[i].startLocation, "", newDate.split('T')[0], response.data[i].status);
-          
+
           let destinationResponse = await AXIOS.get('/api/location/getDestination/'+ response.data[i].routeId.toString() + '/', {}, {});
           route.dest = destinationResponse.data.city.toString();
 
@@ -180,7 +181,7 @@ export default {
         this.errorRoute = error.message;
       }
     },
-
+    //function that displays filtered users (either passenger, or driver) based on search entry
     filteredUserView: async function(filter, searchTerm) {
       this.users = [];
       var role = this.view.slice(0, -1);
@@ -241,10 +242,6 @@ export default {
         console.log(error.message);
         this.errorRoute = error.message;
       }
-
     },
-
-   
-
   }
 }
