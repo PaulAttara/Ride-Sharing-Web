@@ -12,7 +12,7 @@
     <ul>
       <li><figure><img src="../assets/Kamy.jpg"><figcaption>Kamy Moussavi</figcaption></figure></li>
       <li><figure><img src="../assets/Eden.jpg"><figcaption>Eden Ovadia</figcaption></figure></li>
-      <li><figure><img src="../assets/Noam.jpg"><figcaption>Noam Suissa</figcaption></figure></li>
+      <li><figure><img src="../assets/Noam.JPG"><figcaption>Noam Suissa</figcaption></figure></li>
     </ul>
     <h1 id="msg">{{ msg }}</h1>
     <ul>
