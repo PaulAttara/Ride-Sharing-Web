@@ -5,10 +5,10 @@
   "author": "Noam Suissa",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "postinstall": "npm run build",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\" ; then npm run build ; fi ",
     "start": "node server.js",
-    "build": "node build/build.js",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run e2e"
