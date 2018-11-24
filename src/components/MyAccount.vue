@@ -25,7 +25,9 @@
             <td>{{driver.username}}</td>
             <td>{{driver.firstname}}</td>
             <td>{{driver.lastname}}</td>
-            <td>{{driver.status}}</td>
+            <td v-if="driver.status === 'Active'" style="color: Green">{{driver.status}}</td>
+            <td v-else-if="driver.status === 'Inactive'" style="color: Red">{{driver.status}}</td>
+            <td v-else>{{driver.status}}</td>
           </tr>
           </tbody>
         </table>
@@ -45,7 +47,9 @@
             <td>{{passenger.username}}</td>
             <td>{{passenger.firstname}}</td>
             <td>{{passenger.lastname}}</td>
-            <td>{{passenger.status}}</td>
+            <td v-if="passenger.status === 'Active'" style="color: Green">{{passenger.status}}</td>
+            <td v-else-if="passenger.status === 'Inactive'" style="color: Red">{{passenger.status}}</td>
+            <td v-else>{{passenger.status}}</td>
           </tr>
           </tbody>
         </table>
