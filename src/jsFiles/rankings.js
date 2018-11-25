@@ -1,8 +1,8 @@
 import axios from 'axios'
 var config = require('../../config')
 
-var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
-var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
+var frontendUrl = 'https://' + config.dev.host + ':' + config.dev.port
+var backendUrl = 'https://' + config.dev.backendHost + ':' + config.dev.backendPort
 
 var AXIOS = axios.create({
   baseURL: backendUrl,
@@ -365,7 +365,7 @@ export default {
 	  this.sDrivers.length =0;
 
       for( var z = 0; z<this.NEWroutes.length; z++){
-      		
+
       	this.filteredDrivers[z]= this.NEWroutes[z].dName;
 
       	}
@@ -380,11 +380,11 @@ export default {
   var compressedDrivers = [];
 	// make a copy of the input array
 	var copy = this.driverObj.slice(0);
- 
+
 	// first loop goes over every element
 	for (var i = 0; i < this.driverObj.length; i++) {
- 
-		var myCount = 0;	
+
+		var myCount = 0;
 		// loop over every element in the copy and see if it's the same
 		for (var w = 0; w < copy.length; w++) {
 			if (this.driverObj[i] == copy[w]) {
@@ -394,12 +394,12 @@ export default {
 				delete copy[w];
 			}
 		}
- 
+
 		if (myCount > 0) {
 			var a = new DriverDto();
 			a.username = this.driverObj[i].username;
 			a.numTrips = myCount;
-			
+
 			a.avgRating=this.driverObj[i].avgRating;
 			compressedDrivers.push(a);
 		}
@@ -431,7 +431,7 @@ export default {
       // make a new sorted Driver DTO to display all the sorted driver information
         for (var x = 0; x < sortedUsername.length; x++) {
           this.sDrivers.push(new SortedDriverDto(sortedAvgrating[x], sortedUsername[x], sortedNumTrips[x]));
-        } 
+        }
 
 //FOR PASSENGERS
 this.sPassengers= [];
@@ -455,11 +455,11 @@ try{
   var compressedPassengers = [];
   // make a copy of the input array
   var copy2 = this.passengers.slice(0);
- 
+
   // first loop goes over every element
   for (var i = 0; i < this.passengers.length; i++) {
- 
-    var myCount2 = 0;  
+
+    var myCount2 = 0;
     // loop over every element in the copy and see if it's the same
     for (var u = 0; u < copy2.length; u++) {
       if (this.passengers[i] == copy2[u]) {
@@ -469,7 +469,7 @@ try{
         delete copy2[u];
       }
     }
- 
+
     if (myCount2 > 0) {
       var b = new PassengerDto();
       b.username = this.passengers[i].username;
@@ -511,7 +511,7 @@ try{
           this.sPassengers.push(new SortedDriverDto(sortedAvgrating[x], sortedUsername[x], sortedNumTrips[x]));
         }
     }
-  
+
 
 
   }

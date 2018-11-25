@@ -3,8 +3,8 @@ import { LoginEvent } from '../jsFiles/LogInEvent.js'
 var config = require('../../config')
 
 
-var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
-var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
+var frontendUrl = 'https://' + config.dev.host + ':' + config.dev.port
+var backendUrl = 'https://' + config.dev.backendHost + ':' + config.dev.backendPort
 
 
 var AXIOS = axios.create({
@@ -45,7 +45,7 @@ export default {
     // LoginEvent.$on('logIn', isLoggedIn => {
     // console.log(`Oh, that's nice. It's gotten clicks! ${isLoggedIn} :)`);this.logIn();
     // });
-  
+
 
       //Get Drivers
       try{
@@ -74,7 +74,7 @@ export default {
         console.log(error.message);
         this.errorRoute = error.message;
       }
-         
+
   },
 
   methods: {
