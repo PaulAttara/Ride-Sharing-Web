@@ -8,7 +8,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "start": "node server.js",
-    "e2e": "node test/e2e/runner.js/",
+    "e2e": "node test/e2e/runner.js",
     "test": "npm run e2e"
   },
   "dependencies": {
