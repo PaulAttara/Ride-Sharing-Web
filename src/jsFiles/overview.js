@@ -35,6 +35,12 @@ export default {
   name: 'fleet-overview',
   data () {
     return {
+      center: { lat: 45.4972159, lng: -73.6103642 },
+      mapTypeId: "terrain",
+      markers: [
+        { position: { lat: -0.48585, lng: 117.1466 } },
+        { position: { lat: -6.21462, lng: 106.84513 } }
+      ],
       view: '',
       routes: [],
       users: [],

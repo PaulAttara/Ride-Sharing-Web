@@ -5,6 +5,7 @@
   "author": "Noam Suissa",
   "private": true,
   "scripts": {
+    "dev": "node build/dev-server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "start": "node server.js",
@@ -12,12 +13,13 @@
     "test": "npm run e2e"
   },
   "dependencies": {
-    "express": "^4.16.4",
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-vue": "latest",
+    "express": "^4.16.4",
     "popper.js": "^1.12.9",
     "vue": "^2.5.2",
+    "vue-google-autocomplete": "^1.1.0",
     "vue-router": "^3.0.1",
     "vue2-google-maps": "^0.10.3"
   },

@@ -12,6 +12,7 @@
           <option value="routes">Routes</option>
           <option value="passengers">Passengers</option>
           <option value="drivers">Drivers</option>
+          <option value="rMap">Map</option>
         </select>
         <select v-model="filter" v-if="view === 'routes'" id="filterselect">
           <option value="searchby" hidden>Search By...</option>
@@ -40,6 +41,13 @@
         <span v-if="errorRoute" style="color:red" id="errorMessage">Error: {{errorRoute}} </span>
       </p>
       <div id="cont">
+        <div id="mapDiv" v-if="view==='rMap'">
+          <gmap-map v-bind:center="center" v-bind:zoom="5" v-bind:map-type-id="mapTypeId" style="height: 100%;">
+            <gmap-marker v-for="(item, index) in markers" v-bind:key="index"
+              v-bind:position="item.position"
+              v-on:click="center=item.position"/>
+          </gmap-map>
+        </div>
         <table v-if="view === 'routes'">
           <thead>
           <tr id="header">
@@ -98,8 +106,8 @@
           </tr>
           </tbody>
         </table>
-      
-        
+
+
       </div>
   </div>
 </template>
@@ -109,6 +117,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+#mapDiv{
+  width: 100.25%;
+  height: 100%;
+}
 
  #cont {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
