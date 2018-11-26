@@ -9,11 +9,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
 
-Vue.use(VueGoogleMaps, {
-  load: {
-    libraries: 'places,directions',
-    key: 'AIzaSyA5E6VbJv1Lglava2FfM7BFdJ3MaSmnyy4'
-  }})
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     libraries: 'places,directions',
+//     key: 'AIzaSyA5E6VbJv1Lglava2FfM7BFdJ3MaSmnyy4'
+//   }})
 
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false

@@ -31,16 +31,32 @@ function UserDto(firstname, lastname, city, address, phonenumber, avgrating, use
   this.status = status;
 }
 
+function calculateAndDisplayRoute(context, directionsService, directionsDisplay) {
+  var origin, dest;
+  for (var i=0; i<context.routes.length; i++) {
+    //console.log(route)
+    if(context.routes[i].id == context.filter){
+      origin = context.routes[i].start;
+      dest = context.routes[i].dest;
+    }
+  }
+  directionsService.route({
+    origin: origin,
+    destination: dest,
+    travelMode: 'DRIVING'
+  }, function(response, status) {
+    if (status === 'OK') {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
+
 export default {
   name: 'fleet-overview',
   data () {
     return {
-      center: { lat: 45.4972159, lng: -73.6103642 },
-      mapTypeId: "terrain",
-      markers: [
-        { position: { lat: -0.48585, lng: 117.1466 } },
-        { position: { lat: -6.21462, lng: 106.84513 } }
-      ],
       view: '',
       routes: [],
       users: [],
@@ -56,6 +72,22 @@ export default {
     this.routeView();
   },
   methods: {
+      initMap: function(){
+        this.$nextTick(function(){
+          var directionsService = new google.maps.DirectionsService;
+          var directionsDisplay = new google.maps.DirectionsRenderer;
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 45.49, lng: -73.61},
+            zoom: 9
+          });
+          directionsDisplay.setMap(map);
+          var thisContext = this;
+          var onChangeHandler = function() {
+            calculateAndDisplayRoute(thisContext, directionsService, directionsDisplay);
+          };
+          document.getElementById('filterselect').addEventListener('change', onChangeHandler);
+        })
+      },
     //function to seach for match based on filter and entry
     search: function (filter, searchTerm) {
       this.errorRoute = '';
@@ -90,6 +122,8 @@ export default {
         this.routeView();
       }else if(this.view === 'passengers' || this.view === 'drivers'){
         this.userView();
+      }else if(this.view === 'rMap'){
+        this.initMap();
       }
 
     },
