@@ -38,8 +38,8 @@
           <option value="rating">Rating</option>
           <option value="status">Status</option>
         </select>
-        <input type="text" v-model="searchTerm" placeholder="Search...">
-        <button class="searchButton" @click="search(filter, searchTerm)" name="searchButton">Search</button>
+        <input v-if="!(view==='rMap')" type="text" v-model="searchTerm" placeholder="Search...">
+        <button v-if="!(view==='rMap')" class="searchButton" @click="search(filter, searchTerm)" name="searchButton">Search</button>
       </div>
       <p>
         <span v-if="errorRoute" style="color:red" id="errorMessage">Error: {{errorRoute}} </span>
