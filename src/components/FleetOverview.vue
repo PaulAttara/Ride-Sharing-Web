@@ -38,7 +38,7 @@
           <option value="rating">Rating</option>
           <option value="status">Status</option>
         </select>
-        <input v-if="!(view==='rMap')" type="text" v-model="searchTerm" placeholder="Search...">
+        <input v-if="!(view==='rMap')" type="text" v-model="searchTerm" placeholder="Search..." id="searchbox" ref="searchref" v-on:input="change">
         <button v-if="!(view==='rMap')" class="searchButton" @click="search(filter, searchTerm)" name="searchButton">Search</button>
       </div>
       <p>

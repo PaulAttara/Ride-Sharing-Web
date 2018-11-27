@@ -9,6 +9,7 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
+
 function RouteDto(id, dName, seats, start, dest, date, status){
   this.id = id;
   this.dName = dName;
@@ -68,8 +69,13 @@ export default {
 
     }
   },
+
+
   created: function () {
+
     this.routeView();
+
+
   },
   methods: {
       initMap: function(){
@@ -88,28 +94,47 @@ export default {
           document.getElementById('filterselect').addEventListener('change', onChangeHandler);
         })
       },
+    //on input change
+    change: function(){
+      if(this.filter === 'searchby'){
+        this.errorRoute = "No filter selected";
+        return;
+      }
+      if (this.view === 'routes') {
+        this.filteredRouteView(this.filter, this.searchTerm.toLowerCase());
+        this.errorRoute = '';
+      }else if(this.view === 'passengers' || this.view === 'drivers'){
+        this.filteredUserView(this.filter, this.searchTerm.toLowerCase());
+        this.errorRoute = '';
+      }
+      
+    },
+
     //function to seach for match based on filter and entry
-    search: function (filter, searchTerm) {
+    search: function () {
       this.errorRoute = '';
 
-      if (filter === 'searchby'){
+console.log(this.searchTerm);
+console.log(this.filter);
+
+
+      if (this.filter === 'searchby'){
         this.onChange();
         this.errorRoute = "No filter selected"
         return;
       }
-      console.log(filter);
 
-      if (searchTerm === '') {
+      if (this.searchTerm === '') {
         this.onChange();
         this.errorRoute = "No search term entered"
-        this.filter = filter;
+        //this.filter = filter;
         return;
       }
 
       if (this.view === 'routes') {
-        this.filteredRouteView(filter, searchTerm.toLowerCase());
+        this.filteredRouteView(this.filter, this.searchTerm.toLowerCase());
       }else if(this.view === 'passengers' || this.view === 'drivers'){
-        this.filteredUserView(filter, searchTerm.toLowerCase());
+        this.filteredUserView(this.filter, this.searchTerm.toLowerCase());
       }
     },
     //function to switch table views
