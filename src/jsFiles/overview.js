@@ -34,24 +34,62 @@ function UserDto(firstname, lastname, city, address, phonenumber, avgrating, use
 
 function calculateAndDisplayRoute(context, directionsService, directionsDisplay) {
   var origin, dest;
+  var waypts = [];
+  var stops;
   for (var i=0; i<context.routes.length; i++) {
     //console.log(route)
     if(context.routes[i].id == context.filter){
       origin = context.routes[i].start;
       dest = context.routes[i].dest;
+      stops = Promise.resolve(getAllStops(context.routes[i].id));
+      stops.then(function(value) {
+        for (var i = 0; i < value.length; i++) {
+          if(!(value[i].city === dest)){
+
+          waypts.push({
+                    location: value[i].city.toString(),
+                    stopover: true
+                  });
+              }
+              console.log(waypts.length)
+        }
+        })
+      break;
     }
   }
+  console.log("hi")
+  //console.log(wpts)
+  stops.then(function(value) {
   directionsService.route({
     origin: origin,
     destination: dest,
+    waypoints: waypts,
+    optimizeWaypoints: true,
     travelMode: 'DRIVING'
   }, function(response, status) {
     if (status === 'OK') {
+      console.log(response)
       directionsDisplay.setDirections(response);
     } else {
       window.alert('Directions request failed due to ' + status);
     }
   });
+});
+}
+
+async function getAllStops(routeid){
+  var stops=[];
+  var thisResponse =[];
+  try{
+    let response = await AXIOS.get('/api/route/getStops/' + routeid + '/', {}, {});
+    thisResponse = response.data;
+    for (var i = 0; i < thisResponse.length; i++) {
+    stops.push(response.data[i]);
+    }
+  }catch(error){
+    console.log(error.message);
+  }
+  return stops;
 }
 
 export default {
@@ -107,15 +145,15 @@ export default {
         this.filteredUserView(this.filter, this.searchTerm.toLowerCase());
         this.errorRoute = '';
       }
-      
+
     },
 
     //function to seach for match based on filter and entry
     search: function () {
       this.errorRoute = '';
 
-console.log(this.searchTerm);
-console.log(this.filter);
+      console.log(this.searchTerm);
+      console.log(this.filter);
 
 
       if (this.filter === 'searchby'){
