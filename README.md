@@ -1,6 +1,3 @@
-<b>Reason for late submission</b><br/>
-We appologize for the late submission. We have worked all night and day to resolve the deployment to Heroku (ie. using the heroku link). The reason that we finally discovered was that Noam's account, who was the owner of the app at the time, was getting a 'quota is exhausted' error. We were unable to resolve the issue until we stumbled upon that error and transfered ownership to Eden's account.
-
 <b>Heroku</b><br/>
 name: sharefare-web<br/>
 URL: https://sharefare-web.herokuapp.com<br/>
